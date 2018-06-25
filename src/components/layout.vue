@@ -1,5 +1,8 @@
 <template>
 	<div class="layout">
+		<div class="banner">
+			<img src="" alt="" srcset="">
+		</div>
 		<router-view/>
 		<van-tabbar v-model="active">
 			<van-tabbar-item icon="shop">首页</van-tabbar-item>
@@ -25,6 +28,12 @@ export default {
 .layout{
 	height:calc(100% - 50px);
 	overflow: auto;
+	.banner{
+		height: 70px;
+		img{
+			width: 100%;
+		}
+	}
 }
 </style>
 
