@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import Vant from 'vant';
 import 'vant/lib/vant-css/index.css';
+import './style/reset.scss';
 import App from './App'
 import router from './router'
 
