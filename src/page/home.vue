@@ -1,7 +1,7 @@
 <template>
 	<div class="home">
 		<!-- 轮播 -->
-		<div></div>
+		<div>轮播</div>
 
 		<!-- 公示快速入口模块 -->
 		<div></div>

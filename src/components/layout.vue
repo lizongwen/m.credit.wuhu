@@ -1,14 +1,34 @@
 <template>
 	<div class="layout">
 		<div class="banner">
-			<img src="" alt="" srcset="">
+			<img src="../img/banner3x.png" alt="" srcset="">
 		</div>
 		<router-view/>
 		<van-tabbar v-model="active">
-			<van-tabbar-item icon="shop">首页</van-tabbar-item>
-			<van-tabbar-item icon="chat">信用动态</van-tabbar-item>
-			<van-tabbar-item icon="records">信用公示</van-tabbar-item>
-			<van-tabbar-item icon="gold-coin">信用服务</van-tabbar-item>
+			<van-tabbar-item to="./home">
+				<span>首页</span>
+				<template slot="icon" slot-scope="props">
+					<img :src="props.active ? icon.homeActive : icon.homeNormal" />
+				</template>
+			</van-tabbar-item>
+			<van-tabbar-item to="./dynamic">
+				<span>信用动态</span>
+				<template slot="icon" slot-scope="props">
+					<img :src="props.active ? icon.starActive : icon.starNormal" />
+				</template>
+			</van-tabbar-item>
+			<van-tabbar-item to="./publicity">
+				<span>信用公示</span>
+				<template slot="icon" slot-scope="props">
+					<img :src="props.active ? icon.profileActive : icon.profileNormal" />
+				</template>
+			</van-tabbar-item>
+			<van-tabbar-item to="./service">
+				<span>信用服务</span>
+				<template slot="icon" slot-scope="props">
+					<img :src="props.active ? icon.appstoreActive : icon.appstoreNormal" />
+				</template>
+			</van-tabbar-item>
 		</van-tabbar>
 	</div>
 </template>
@@ -18,22 +38,43 @@ export default {
   name: "layout",
   data() {
     return {
-		active: 0
-	};
+      active: 0,
+      icon: {
+        homeNormal: require("../img/home.png"),
+        homeActive: require("../img/home-o.png"),
+        starNormal: require("../img/star.png"),
+        starActive: require("../img/star-o.png"),
+        profileNormal: require("../img/profile.png"),
+        profileActive: require("../img/profile-o.png"),
+        appstoreNormal: require("../img/appstore.png"),
+        appstoreActive: require("../img/appstore-o.png")
+      }
+    };
+  },
+  methods: {
+    change(active) {
+      console.log(active);
+    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.layout{
-	height:calc(100% - 50px);
-	overflow: auto;
-	.banner{
-		height: 70px;
-		img{
-			width: 100%;
-		}
-	}
+.van-tabbar-item {
+  color: #2e2e2e;
+}
+.van-tabbar-item--active {
+  color: #e23b41;
+}
+.layout {
+  height: calc(100% - 50px);
+  overflow: auto;
+  .banner {
+    height: 70px;
+    img {
+      width: 100%;
+    }
+  }
 }
 </style>
 
