@@ -3,7 +3,7 @@
 		<div class="banner">
 			<img src="../img/banner3x.png" alt="" srcset="">
 		</div>
-		<router-view/>
+		<router-view class="content"/>
 		<van-tabbar v-model="active">
 			<van-tabbar-item to="./home">
 				<span>首页</span>
@@ -51,6 +51,9 @@ export default {
       }
     };
   },
+  mounted() {
+    this.active = this.$route.meta.index;
+  },
   methods: {
     change(active) {
       console.log(active);
@@ -70,10 +73,15 @@ export default {
   height: calc(100% - 50px);
   overflow: auto;
   .banner {
-    height: 70px;
+    // height: 70px;
     img {
       width: 100%;
+      vertical-align: top;
     }
+  }
+  .content {
+    overflow: auto;
+	height: calc(100% - 70px);
   }
 }
 </style>

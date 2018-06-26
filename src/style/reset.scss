@@ -4,5 +4,101 @@ html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquot
 	padding: 0;
 }
 html,body{
+	// font-size:16px;
 	height: 100%
+}
+*,*::after,*::before{
+	box-sizing: border-box
+}
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.block {
+    display: block
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.pull-left,
+.fl {
+    float: left !important;
+}
+
+.pull-right,
+.fr {
+    float: right !important;
+}
+
+.hide,
+.hidden {
+    display: none !important;
+}
+
+.show {
+    display: block !important;
+}
+
+.align-center,
+.text-center {
+    text-align: center !important;
+}
+
+.align-left,
+.text-left {
+    text-align: left !important;
+}
+
+.align-right,
+.text-right {
+    text-align: right !important;
+}
+
+.align-justify,
+.text-justify {
+    text-align: justify
+}
+
+.invisible {
+    visibility: hidden;
+}
+.over-hiden {
+    overflow: hidden !important;
+}
+.text-hide {
+    font: 0/0 a;
+    color: transparent;
+    text-shadow: none;
+    background-color: transparent;
+    border: 0;
+}
+
+.affix {
+    position: fixed;
+}
+
+.text-indent {
+    text-indent: 30px;
+}
+
+.ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.no-border-radius {
+    border-radius: 0 !important;
+}
+
+.no-border {
+    border: none !important;
 }
