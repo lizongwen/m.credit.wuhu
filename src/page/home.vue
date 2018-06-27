@@ -11,9 +11,18 @@
 
 		<!-- 公示快速入口模块 -->
 		<div class="gs-nav bg-grey">
-			<div class="gs-nav-item"></div>
-			<div class="gs-nav-item"></div>
-			<div class="gs-nav-item"></div>
+			<div class="gs-nav-item">
+				<img src="../img/Slice1.png" alt="" srcset="">
+				<p>黑名单</p>
+			</div>
+			<div class="gs-nav-item">
+				<img src="../img/Slice2.png" alt="" srcset="">
+				<p>红名单</p>
+			</div>
+			<div class="gs-nav-item">
+				<img src="../img/Slice3.png" alt="" srcset="">
+				<p>失信被执行人</p>   
+			</div>
 		</div>
 
 		<!-- 守信和失信入口 -->
@@ -58,7 +67,7 @@ export default {
       loading: false,
       list: [
         {
-          title: "标题一标题一标题一标题一标题一标题一标题一",
+          title: "芜湖市荣获“守信激励创新奖”",
           content: "标题内容一",
           date: "2018/01/05"
         },
@@ -116,15 +125,28 @@ export default {
   }
   .gs-nav {
     display: flex;
-    padding: 8px;
+    padding: 8px 0;
     justify-content: space-evenly;
     align-content: space-evenly;
     align-items: center;
     background-color: #f6f6f6;
     .gs-nav-item {
-      width: 110px;
+      width: 30%;
       height: 60px;
+      padding-top: 5px;
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
       background-color: #fff;
+      img{
+      	height: 28px;
+      	width: 26px;
+      }
+      p{
+      	font-size: 14px;
+      	text-align:center;
+      	margin:0 auto;
+      }
     }
   }
   .credit-nav {

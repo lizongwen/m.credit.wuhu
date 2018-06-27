@@ -38,6 +38,7 @@ export default {
     return {
       searchValue: "",
       loading: false,
+      active: 0,
       list: [
         {
           title: "标题一标题一标题一标题一标题一标题一标题一",
