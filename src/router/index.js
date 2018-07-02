@@ -72,7 +72,14 @@ export default new Router({
 					index:7
 				},
 				component: () => import('@/page/publicityCompany.vue'),
-			}]
+			},{
+				path: 'rewards',
+				name: 'rewards',//惩戒动态
+				meta:{
+					index:0
+				},
+				component: () => import('@/page/rewards.vue'),
+			},]
 		}
 	]
 })

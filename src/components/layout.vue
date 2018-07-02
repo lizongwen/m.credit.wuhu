@@ -29,6 +29,12 @@
 					<img :src="props.active ? icon.appstoreActive : icon.appstoreNormal" />
 				</template>
 			</van-tabbar-item>
+			<van-tabbar-item to="./rewards">
+				<span>奖惩动态</span>
+				<template slot="icon" slot-scope="props">
+					<img :src="props.active ? icon.appstoreActive : icon.appstoreNormal" />
+				</template>
+			</van-tabbar-item>
 		</van-tabbar>
 	</div>
 </template>
