@@ -115,7 +115,8 @@ export default {
   },
   methods: {
     onSearch() {
-      console.log("搜素");
+	  console.log("搜素");
+	  this.$router.push({ path: "article",query: { searchValue: this.searchValue } })
     },
     onCancel() {
       console.log("取消");

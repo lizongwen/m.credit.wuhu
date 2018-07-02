@@ -44,6 +44,41 @@ export default new Router({
 					index:3
 				},
 				component: () => import('@/page/service.vue'),
+			},{
+				path: 'serviceDetail',
+				name: 'serviceDetail',//信用服务详情
+				meta:{
+					index:4
+				},
+				component: () => import('@/page/serviceDetail.vue'),
+			},{
+				path: 'article',
+				name: 'article',//全文检索文章
+				meta:{
+					index:5
+				},
+				component: () => import('@/page/article.vue'),
+			},{
+				path: 'articleDetail',
+				name: 'articleDetail',//全文检索文章详情
+				meta:{
+					index:6
+				},
+				component: () => import('@/page/articleDetail.vue'),
+			},{
+				path: 'publicityCompany',
+				name: 'publicityCompany',//信用公示企业
+				meta:{
+					index:7
+				},
+				component: () => import('@/page/publicityCompany.vue'),
+			},{
+				path: 'publicityComDetail',
+				name: 'publicityComDetail',//信用公示企业详情
+				meta:{
+					index:8
+				},
+				component: () => import('@/page/publicityComDetail.vue'),
 			}]
 		}
 	]

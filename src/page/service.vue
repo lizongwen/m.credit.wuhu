@@ -8,12 +8,11 @@
 			</form>
 		</div>
 		<div>
-			<van-cell v-for="(item,index) in list" :key="index"  >
+			<van-cell v-for="(item,index) in list" :key="index"  :to="{ path: 'serviceDetail', query: { id: item.id }}">
 				<template slot="title">
                     <div class="van-ellipsis news-title">惠国征信服务股份有限公司</div>
 					<div class="companycreditCode">统一社会信用代码:<span>9135020570540817X8</span></div>
 				</template>
-
 			</van-cell>
 		</div>
 	</div>
@@ -28,71 +27,37 @@
 				columns: ['法人', '自然人'],
 				active: 0,
 				list: [{
+						id:1,
 						title: "标题一标题一标题一标题一标题一标题一标题一",
 						content: "标题内容一",
 						date: "2018/01/05"
 					},
 					{
+						id:2,
 						title: "标题二",
 						content: "标题内容二",
 						date: "2018/01/05"
 					},
 					{
+						id:3,
 						title: "标题三",
 						content: "标题内容三",
 						date: "2018/01/05"
 					},
 					{
+						id:4,
 						title: "标题四",
 						content: "标题内容四",
 						date: "2018/01/05"
 					},
 					{
+						id:5,
 						title: "标题五",
 						content: "标题内容五",
 						date: "2018/01/05"
 					},
 					{
-						title: "标题五",
-						content: "标题内容五",
-						date: "2018/01/05"
-					},
-					{
-						title: "标题五",
-						content: "标题内容五",
-						date: "2018/01/05"
-					},
-					{
-						title: "标题五",
-						content: "标题内容五",
-						date: "2018/01/05"
-					},
-					{
-						title: "标题五",
-						content: "标题内容五",
-						date: "2018/01/05"
-					},
-					{
-						title: "标题五",
-						content: "标题内容五",
-						date: "2018/01/05"
-					},
-					{
-						title: "标题五",
-						content: "标题内容五",
-						date: "2018/01/05"
-					},
-					{
-						title: "标题五",
-						content: "标题内容五",
-						date: "2018/01/05"
-					},
-					{
-						title: "标题五",
-						content: "标题内容五",
-						date: "2018/01/05"
-					},
-					{
+						id:6,
 						title: "标题五",
 						content: "标题内容五",
 						date: "2018/01/05"
