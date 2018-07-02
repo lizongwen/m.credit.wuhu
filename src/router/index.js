@@ -72,13 +72,6 @@ export default new Router({
 					index:7
 				},
 				component: () => import('@/page/publicityCompany.vue'),
-			},{
-				path: 'publicityComDetail',
-				name: 'publicityComDetail',//信用公示企业详情
-				meta:{
-					index:8
-				},
-				component: () => import('@/page/publicityComDetail.vue'),
 			}]
 		}
 	]
