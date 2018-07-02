@@ -2,9 +2,9 @@
 	<div class="publicityCompany">
 		<div class="company-title">
 			<div class="company-title-left">
-				<p>安徽正元发展有限公司</p>
-				<p style="font-size: 14px; color: #2E2E2E;">统一社会信用代码: <span>0000000000000000</span></p>
-				<p style="font-size: 14px; color: #2E2E2E;">共有1条失信黑名单信息</p>
+				<p style="color:rgba(0,0,0,0.8)">安徽正元发展有限公司</p>
+				<p style="font-size: 12px; color: rgba(46,46,46,0.6);">统一社会信用代码: <span>0000000000000000</span></p>
+				<p style="font-size: 12px; color: rgba(46,46,46,0.6);">共有1条失信黑名单信息</p>
 			</div>
 			<img src="../img/black.png" />
 		</div>
