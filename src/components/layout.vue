@@ -32,7 +32,7 @@
 			<van-tabbar-item to="./rewards">
 				<span>奖惩动态</span>
 				<template slot="icon" slot-scope="props">
-					<img :src="props.active ? icon.appstoreActive : icon.appstoreNormal" />
+					<img :src="props.active ? icon.rewardsActive : icon.rewardsNormal" />
 				</template>
 			</van-tabbar-item>
 		</van-tabbar>
@@ -53,7 +53,9 @@ export default {
         profileNormal: require("../img/profile.png"),
         profileActive: require("../img/profile-o.png"),
         appstoreNormal: require("../img/appstore.png"),
-        appstoreActive: require("../img/appstore-o.png")
+        appstoreActive: require("../img/appstore-o.png"),
+        rewardsNormal: require("../img/rewards.png"),
+        rewardsActive: require("../img/rewards-o.png")
       }
     };
   },

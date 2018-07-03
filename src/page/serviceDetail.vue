@@ -17,31 +17,40 @@
 									<van-collapse-item title="2018/06/21  来源: 市国税局" name="1" class="accordion">
 										<div>
 											<div class="message">
-												<div>主题类型</div><span>法人</span>
+												<div class="message-left">主题类型</div>
+												<div class="message-right">法人</div>
 											</div>
 											<div class="message">
-												<div>信息记录名称</div><span>法人</span>
+												<div class="message-left">信息记录名称</div>
+												<div class="message-right">法人</div>
 											</div>
 											<div class="message">
-												<div>行政相对人名称</div><span>安徽正元发展有限公司</span>
+												<div class="message-left">行政相对人名称</div>
+												<div class="message-right">安徽正元发展有限公司</div>
 											</div>
 											<div class="message">
-												<div>身份证号码</div><span>00000000000000000</span>
+												<div class="message-left">身份证号码</div>
+												<div class="message-right">00000000000000000</div>
 											</div>
 											<div class="message">
-												<div>统一社会信用代码</div><span>00000000000000000</span>
+												<div class="message-left">统一社会信用代码</div>
+												<div class="message-right">00000000000000000</div>
 											</div>
 											<div class="message">
-												<div>发布部门全称</div><span>芜湖市镜湖区人民法院</span>
+												<div class="message-left">发布部门全称</div>
+												<div class="message-right">芜湖市镜湖区人民法院</div>
 											</div>
 											<div class="message">
-												<div>发布部门简称</div><span>芜湖市镜湖区人民法院</span>
+												<div class="message-left">发布部门简称</div>
+												<div class="message-right">芜湖市镜 湖区人民法院</div>
 											</div>
 											<div class="message">
-												<div>发布名称</div><span>失信被执行人</span>
+												<div class="message-left">发布名称</div>
+												<div class="message-right">失信被执行人</div>
 											</div>
 											<div class="message">
-												<div>主要内容</div><span>失信被执行人</span>
+												<div class="message-left">主要内容</div>
+												<div class="message-right">失信被执行人失信被执行人失信被执行人</div>
 											</div>
 										</div>
 
@@ -60,31 +69,40 @@
 									<van-collapse-item title="2018/06/21  来源: 市国税局" name="1" class="accordion">
 										<div>
 											<div class="message">
-												<div>主题类型</div><span>法人</span>
+												<div class="message-left">主题类型</div>
+												<div class="message-right">法人</div>
 											</div>
 											<div class="message">
-												<div>信息记录名称</div><span>法人</span>
+												<div class="message-left">信息记录名称</div>
+												<div class="message-right">法人</div>
 											</div>
 											<div class="message">
-												<div>行政相对人名称</div><span>安徽正元发展有限公司</span>
+												<div class="message-left">行政相对人名称</div>
+												<div class="message-right">安徽正元发展有限公司</div>
 											</div>
 											<div class="message">
-												<div>身份证号码</div><span>00000000000000000</span>
+												<div class="message-left">身份证号码</div>
+												<div class="message-right">00000000000000000</div>
 											</div>
 											<div class="message">
-												<div>统一社会信用代码</div><span>00000000000000000</span>
+												<div class="message-left">统一社会信用代码</div>
+												<div class="message-right">00000000000000000</div>
 											</div>
 											<div class="message">
-												<div>发布部门全称</div><span>芜湖市镜湖区人民法院</span>
+												<div class="message-left">发布部门全称</div>
+												<div class="message-right">芜湖市镜湖区人民法院</div>
 											</div>
 											<div class="message">
-												<div>发布部门简称</div><span>芜湖市镜湖区人民法院</span>
+												<div class="message-left">发布部门简称</div>
+												<div class="message-right">芜湖市镜 湖区人民法院</div>
 											</div>
 											<div class="message">
-												<div>发布名称</div><span>失信被执行人</span>
+												<div class="message-left">发布名称</div>
+												<div class="message-right">失信被执行人</div>
 											</div>
 											<div class="message">
-												<div>主要内容</div><span>失信被执行人</span>
+												<div class="message-left">主要内容</div>
+												<div class="message-right">失信被执行人失信被执行人失信被执行人</div>
 											</div>
 										</div>
 
@@ -154,18 +172,19 @@
 			}
 		}
 		.van-collapse {
-			
 			.van-collapse-item__content {
-				padding:0px;
+				padding: 0px;
 				.message {
 					font-size: 14px;
 					width: 100%;
 					border-bottom: 1px solid #EBEBEB;
 					padding: 10px 0;
-					div{
+					.message-left{
 						float: left;
-						width: 160px;
-						/*height: 100%;*/
+						width: 40%;
+					}
+					.message-right{
+						margin-left: 40%;
 					}
 				}
 			}
