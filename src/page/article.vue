@@ -104,7 +104,6 @@
 		}
 	};
 </script>
-</script>
 
 <style lang="scss" scoped>
 	.article {
