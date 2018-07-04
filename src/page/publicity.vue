@@ -48,16 +48,17 @@ export default {
       searchValue: "",
       loading: false,
       active: 0,
-      list: []
+	  list: [],
+	  
     };
   },
   mounted() {
-   // this.getRedList();
+   //this.getRedList();
   },
   methods: {
     getRedList: async function() {
-      let params = { columnName: "信用动态" };
-      const res = await this.$http.post("/webApp/credit/searchArticle", params);
+      let params = { ztlx: "",searchValue:this.searchValue };
+      const res = await this.$http.post("/webApp/credit/getRedLists", params);
       if (res.data.resultCode == "0000") {
         this.xydtlist = res.data.resultData.rows;
       }

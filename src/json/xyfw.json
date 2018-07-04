@@ -1,0 +1,60 @@
+{
+	"resultCode": "0000",
+	"resultData": {
+		"rows": [
+			{
+				"id": "341400000000543771",
+				"qymc": "无为县庆衍街正安酒店",
+				"tyshxydm": null
+			},
+			{
+				"id": "341400000000543780",
+				"qymc": null,
+				"tyshxydm": null
+			},
+			{
+				"id": "341400000000543786",
+				"qymc": null,
+				"tyshxydm": null
+			},
+			{
+				"id": "341400000000543794",
+				"qymc": "无城昌盛建材商店",
+				"tyshxydm": null
+			},
+			{
+				"id": "341400000000543799",
+				"qymc": "无为县明焕建材经营部",
+				"tyshxydm": null
+			},
+			{
+				"id": "341400000000543804",
+				"qymc": "无为县东杨床垫厂",
+				"tyshxydm": null
+			},
+			{
+				"id": "341400000000356584",
+				"qymc": "无为县科博数码产品销售中心",
+				"tyshxydm": null
+			},
+			{
+				"id": "341400000000357351",
+				"qymc": null,
+				"tyshxydm": null
+			},
+			{
+				"id": "341400000000357700",
+				"qymc": null,
+				"tyshxydm": "92340225MA2RA1FF00"
+			},
+			{
+				"id": "341400000000375042",
+				"qymc": null,
+				"tyshxydm": null
+			}
+		],
+		"page": 42854,
+		"total": 428532
+	},
+	"resultMsg": "成功(0000)"
+}

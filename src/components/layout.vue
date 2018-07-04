@@ -3,7 +3,9 @@
 		<div class="banner">
 			<img src="../img/banner3x.png" alt="" srcset="">
 		</div>
-		<router-view class="content"/>
+		<keep-alive>
+			<router-view class="content"/>
+		</keep-alive>
 		<van-tabbar v-model="active">
 			<van-tabbar-item to="./home">
 				<span>首页</span>
