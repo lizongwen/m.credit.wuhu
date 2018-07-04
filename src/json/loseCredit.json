@@ -1,0 +1,70 @@
+{
+	"resultCode": "0000",
+	"resultData": {
+		"rows": [
+			{
+				"sxbzxrmc": "鲍勇",
+				"tyshxydm": "340203********1213",
+				"unTotalCount": 1,
+				"ztlx": "1"
+			},
+			{
+				"sxbzxrmc": "毕锋",
+				"tyshxydm": "340202********1711",
+				"unTotalCount": 1,
+				"ztlx": "1"
+			},
+			{
+				"sxbzxrmc": "蔡林",
+				"tyshxydm": "340211********1314",
+				"unTotalCount": 1,
+				"ztlx": "1"
+			},
+			{
+				"sxbzxrmc": "蔡婷",
+				"tyshxydm": "342623********7887",
+				"unTotalCount": 1,
+				"ztlx": "1"
+			},
+			{
+				"sxbzxrmc": "曹军",
+				"tyshxydm": "340222********003X",
+				"unTotalCount": 1,
+				"ztlx": "1"
+			},
+			{
+				"sxbzxrmc": "曹平",
+				"tyshxydm": "340223********231X",
+				"unTotalCount": 1,
+				"ztlx": "1"
+			},
+			{
+				"sxbzxrmc": "陈东",
+				"tyshxydm": "342623********0670",
+				"unTotalCount": 1,
+				"ztlx": "1"
+			},
+			{
+				"sxbzxrmc": "陈飞",
+				"tyshxydm": "340311********1810",
+				"unTotalCount": 1,
+				"ztlx": "1"
+			},
+			{
+				"sxbzxrmc": "陈国",
+				"tyshxydm": "342522********0018",
+				"unTotalCount": 1,
+				"ztlx": "1"
+			},
+			{
+				"sxbzxrmc": "陈华",
+				"tyshxydm": "340211********1038",
+				"unTotalCount": 1,
+				"ztlx": "1"
+			}
+		],
+		"page": 162,
+		"total": 1614
+	},
+	"resultMsg": "成功(0000)"
+}

@@ -1,0 +1,70 @@
+{
+	"resultCode": "0000",
+	"resultData": {
+		"rows": [
+			{
+				"tyshxydm": null,
+				"unTotalCount": "0",
+				"xzxdrmc": null,
+				"ztlx": "1"
+			},
+			{
+				"tyshxydm": null,
+				"unTotalCount": "1",
+				"xzxdrmc": "卞聪",
+				"ztlx": "1"
+			},
+			{
+				"tyshxydm": null,
+				"unTotalCount": "1",
+				"xzxdrmc": "曹燕",
+				"ztlx": "1"
+			},
+			{
+				"tyshxydm": null,
+				"unTotalCount": "1",
+				"xzxdrmc": "曹毅",
+				"ztlx": "1"
+			},
+			{
+				"tyshxydm": null,
+				"unTotalCount": "1",
+				"xzxdrmc": "陈冰",
+				"ztlx": "1"
+			},
+			{
+				"tyshxydm": null,
+				"unTotalCount": "1",
+				"xzxdrmc": "陈朝",
+				"ztlx": "1"
+			},
+			{
+				"tyshxydm": null,
+				"unTotalCount": "1",
+				"xzxdrmc": "陈功",
+				"ztlx": "1"
+			},
+			{
+				"tyshxydm": null,
+				"unTotalCount": "1",
+				"xzxdrmc": "陈洁",
+				"ztlx": "1"
+			},
+			{
+				"tyshxydm": null,
+				"unTotalCount": "1",
+				"xzxdrmc": "陈娟",
+				"ztlx": "1"
+			},
+			{
+				"tyshxydm": null,
+				"unTotalCount": "1",
+				"xzxdrmc": "陈磊",
+				"ztlx": "1"
+			}
+		],
+		"page": 349,
+		"total": 3482
+	},
+	"resultMsg": "成功(0000)"
+}

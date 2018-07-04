@@ -2,7 +2,7 @@
 	<div class="dynamic">
 		<div class="search-bar-wrap">
 			<form action="/">
-				<van-search v-model="searchValue" placeholder="请输入商品名称" show-action @search="onSearch" @cancel="onCancel">
+				<van-search v-model="searchValue" :placeholder="placeholder" show-action @search="onSearch">
 					<div slot="action" @click="onSearch" class="search-btn">搜索</div>
 				</van-search>
 			</form>
@@ -12,15 +12,15 @@
 				<van-tab title="红名单">
 					<!--<div>-->
 					<!--<van-list v-model="loading" @load="onLoad" :offset='1' :immediate-check="false">-->
-					<van-cell v-for="(item,index) in list" :key="index" :border="false" is-link :to="{path:'publicityCompany',query:{id:item.id}}">
+					<van-cell v-for="(item,index) in redlist" :key="index" :border="false" is-link :to="{path:'publicityCompany',query:{mc:item.xzxdrmc,ztlx:item.ztlx,gslb:0}}">
 						<template slot="title">
-							<div class="van-ellipsis news-title">惠国征信服务股份有限公司</div>
+							<div class="van-ellipsis news-title">{{item.xzxdrmc}}</div>
 							<div class="companycreditCode">统一社会信用代码:
-								<span>9135020570540817X8</span>
+								<span>{{item.tyshxydm}}</span>
 							</div>
 							<div class="quantity">
 								失信记录
-								<span>2</span>
+								<span>{{item.unTotalCount}}</span>
 							</div>
 						</template>
 
@@ -31,10 +31,36 @@
 					<!--</div>-->
 				</van-tab>
 				<van-tab title="黑名单">
-					<div>2</div>
+					<div>
+						<van-cell v-for="(item,index) in blacklist" :key="index" :border="false" is-link :to="{path:'publicityCompany',query:{mc:item.xzxdrmc,ztlx:item.ztlx,gslb:1}}">
+							<template slot="title">
+								<div class="van-ellipsis news-title">{{item.xzxdrmc}}</div>
+								<div class="companycreditCode">统一社会信用代码:
+									<span>{{item.tyshxydm}}</span>
+								</div>
+								<div class="quantity">
+									失信记录
+									<span>{{item.unTotalCount}}</span>
+								</div>
+							</template>
+						</van-cell>
+					</div>
 				</van-tab>
 				<van-tab title="失信被执行人">
-					<div>3</div>
+					<div>
+						<van-cell v-for="(item,index) in loseCreditList" :key="index" :border="false" is-link :to="{path:'publicityCompany',query:{mc:item.sxbzxrmc,ztlx:item.ztlx,gslb:2}}">
+							<template slot="title">
+								<div class="van-ellipsis news-title">{{item.sxbzxrmc}}</div>
+								<div class="companycreditCode">统一社会信用代码:
+									<span>{{item.tyshxydm}}</span>
+								</div>
+								<div class="quantity">
+									失信记录
+									<span>{{item.unTotalCount}}</span>
+								</div>
+							</template>
+						</van-cell>
+					</div>
 				</van-tab>
 			</van-tabs>
 		</div>
@@ -45,39 +71,66 @@
 export default {
   data() {
     return {
+      placeholder: "请输入姓名或身份证号",
       searchValue: "",
       loading: false,
       active: 0,
-	  list: [],
-	  
+      redlist: [],
+      blacklist: [],
+      loseCreditList: []
     };
   },
   mounted() {
-   //this.getRedList();
+    this.getRedList();
+    this.getBlackList();
+    this.getLoseCreditList();
   },
   methods: {
     getRedList: async function() {
-      let params = { ztlx: "",searchValue:this.searchValue };
+      let params = { ztlx: "", xzxdrmc: this.searchValue };
       const res = await this.$http.post("/webApp/credit/getRedLists", params);
       if (res.data.resultCode == "0000") {
-        this.xydtlist = res.data.resultData.rows;
+        this.redlist = this.redlist.concat(res.data.resultData.rows);
+      }
+    },
+    getBlackList: async function() {
+      let params = { ztlx: "", xzxdrmc: this.searchValue };
+      const res = await this.$http.post("/webApp/credit/getBlackLists", params);
+      if (res.data.resultCode == "0000") {
+        this.blacklist = this.blacklist.concat(res.data.resultData.rows);
+      }
+    },
+    getLoseCreditList: async function() {
+      let params = { ztlx: "", sxbzxrmc: this.searchValue };
+      const res = await this.$http.post(
+        "/webApp/credit/getDiscreditLists",
+        params
+      );
+      if (res.data.resultCode == "0000") {
+        this.loseCreditList = this.loseCreditList.concat(
+          res.data.resultData.rows
+        );
       }
     },
     onSearch() {
-      console.log("搜素");
-    },
-    onCancel() {
-      console.log("取消");
+      switch (this.active) {
+        case 0:
+          this.redlist = [];
+          this.getRedList();
+          break;
+        case 1:
+          this.blacklist = [];
+          this.getBlackList();
+          break;
+        case 2:
+          this.loseCreditList = [];
+          this.getLoseCreditList();
+          break;
+      }
+      //console.log("搜素");
     },
     onLoad() {
       console.log(123);
-      setTimeout(() => {
-        this.list.push({
-          title: "标题一",
-          content: "标题内容一"
-        });
-        this.loading = false;
-      }, 2000);
     }
   }
 };
@@ -91,7 +144,6 @@ export default {
   .tab {
     .van-tab__pane {
       background: #f6f6f6;
-      padding: 10px 0;
       .van-cell {
         height: 104px;
         margin-bottom: 10px;

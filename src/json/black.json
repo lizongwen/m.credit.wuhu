@@ -1,0 +1,70 @@
+{
+	"resultCode": "0000",
+	"resultData": {
+		"rows": [
+			{
+				"tyshxydm": "340222********0021",
+				"unTotalCount": "1",
+				"xzxdrmc": "艾群",
+				"ztlx": "1"
+			},
+			{
+				"tyshxydm": "340222********0010",
+				"unTotalCount": "1",
+				"xzxdrmc": "艾伟",
+				"ztlx": "1"
+			},
+			{
+				"tyshxydm": "340721********4520",
+				"unTotalCount": "1",
+				"xzxdrmc": "艾玉",
+				"ztlx": "1"
+			},
+			{
+				"tyshxydm": "342623********3651",
+				"unTotalCount": "1",
+				"xzxdrmc": "安红",
+				"ztlx": "1"
+			},
+			{
+				"tyshxydm": "340203********1519",
+				"unTotalCount": "1",
+				"xzxdrmc": "柏林",
+				"ztlx": "1"
+			},
+			{
+				"tyshxydm": "340202********001X",
+				"unTotalCount": "1",
+				"xzxdrmc": "鲍恩",
+				"ztlx": "1"
+			},
+			{
+				"tyshxydm": "340222********003x",
+				"unTotalCount": "1",
+				"xzxdrmc": "鲍杰",
+				"ztlx": "1"
+			},
+			{
+				"tyshxydm": "340222********1313",
+				"unTotalCount": "1",
+				"xzxdrmc": "鲍勤",
+				"ztlx": "1"
+			},
+			{
+				"tyshxydm": "340203********1213",
+				"unTotalCount": "1",
+				"xzxdrmc": "鲍勇",
+				"ztlx": "1"
+			},
+			{
+				"tyshxydm": "340202********1711",
+				"unTotalCount": "2",
+				"xzxdrmc": "毕锋",
+				"ztlx": "1"
+			}
+		],
+		"page": 905,
+		"total": 9047
+	},
+	"resultMsg": "成功(0000)"
+}

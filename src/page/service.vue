@@ -28,7 +28,7 @@
 export default {
   data() {
     return {
-		isEmpty:true,
+      isEmpty: true,
       loading: false,
       searchValue: "",
       pageNo: 1,
@@ -48,9 +48,12 @@ export default {
         "/webApp/creditServer/searchCompanyList",
         params
       );
-      this.list = this.list.concat(res.data.resultData.rows);
-      ++this.pageNo;
-      this.loading = false;
+      if (res.data.resultCode == "0000") {
+        this.list = this.list.concat(res.data.resultData.rows);9
+        ++this.pageNo;
+        this.loading = false;
+        this.isEmpty = false;
+      }
     },
     onLoad() {
       this.onSearch();
@@ -60,18 +63,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.search-bar-wrap{
-	.search-btn{
-		padding:0 5px;
-	}
+.search-bar-wrap {
+  .search-btn {
+    padding: 0 5px;
+  }
 }
-.search-content{
-	height: calc(100% - 46px);
-	.empty{
-		height: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: center
-	}
+.search-content {
+  height: calc(100% - 46px);
+  .empty {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 </style>
