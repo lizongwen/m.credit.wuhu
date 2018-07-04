@@ -21,7 +21,7 @@
 			</div>
 			<div class="gs-nav-item">
 				<img src="../img/Slice3.png" alt="" srcset="">
-				<p>失信被执行人</p>   
+				<p>失信被执行人</p>
 			</div>
 		</div>
 
@@ -36,20 +36,38 @@
 				<van-tab title="信用动态">
 					<div>
 						<van-list v-model="loading" @load="onLoad" :offset='2' :immediate-check="false">
-							<van-cell v-for="(item,index) in list" :key="index" :border="false" is-link>
+							<van-cell v-for="(item,index) in xydtlist" :key="index" :border="false" is-link>
 								<template slot="title">
-									<div class="van-ellipsis fl news-title">标题一标题一标题一标题一标题一标题一</div>
-									<div class="fr">2018/02/01</div>
+									<div class="van-ellipsis fl news-title">{{item.title}}</div>
+									<div class="fr">{{item.publishTime}}</div>
 								</template>
 							</van-cell>
 						</van-list>
 					</div>
 				</van-tab>
 				<van-tab title="政策法规">
-					<div>2</div>
+					<!-- <div>
+						<van-list v-model="loading" @load="onLoad1" :offset='2' :immediate-check="false">
+							<van-cell v-for="(item,index) in list1" :key="index" :border="false" is-link>
+								<template slot="title">
+									<div class="van-ellipsis fl news-title">标题一标题一标题一标题一标题一标题一</div>
+									<div class="fr">2018/02/01</div>
+								</template>
+							</van-cell>
+						</van-list>
+					</div> -->
 				</van-tab>
 				<van-tab title="县区信用监测">
-					<div>3</div>
+					<!-- <div>
+						<van-list v-model="loading" @load="onLoad2" :offset='2' :immediate-check="false">
+							<van-cell v-for="(item,index) in list2" :key="index" :border="false" is-link>
+								<template slot="title">
+									<div class="van-ellipsis fl news-title">标题一标题一标题一标题一标题一标题一</div>
+									<div class="fr">2018/02/01</div>
+								</template>
+							</van-cell>
+						</van-list>
+					</div> -->
 				</van-tab>
 			</van-tabs>
 		</div>
@@ -57,6 +75,7 @@
 </template>
 
 <script>
+import moment from "moment";
 import newPng from "../img/new.png";
 
 export default {
@@ -65,44 +84,65 @@ export default {
       active: 0,
       images: [newPng, newPng],
       loading: false,
-      list: [
-        {
-          title: "芜湖市荣获“守信激励创新奖”",
-          content: "标题内容一",
-          date: "2018/01/05"
-        },
-        {
-          title: "标题二",
-          content: "标题内容二",
-          date: "2018/01/05"
-        },
-        {
-          title: "标题三",
-          content: "标题内容三",
-          date: "2018/01/05"
-        },
-        {
-          title: "标题四",
-          content: "标题内容四",
-          date: "2018/01/05"
-        },
-        {
-          title: "标题五",
-          content: "标题内容五",
-          date: "2018/01/05"
-        }
-      ]
+	  xydtlist: [],
+	  zcfgList:[],
+	  qxjcList:[]
     };
   },
   mounted() {
-    // console.log();
-    // for (let i = 0; i < 10; i++) {
-    //     this.list.push(this.list.length + 1);
-    // }
+	this.getXytdList();
+	//this.getZcfgList();
+	//this.qxjcList();
+  },
+  filters: {
+    moment: function(date) {
+      return moment(date).format("YYYY-MM-DD");
+    }
   },
   methods: {
+    getXytdList: async function() {
+      let params = { columnName: "信用动态" };
+      const res = await this.$http.post("/webApp/credit/searchArticle", params);
+      if (res.data.resultCode == "0000") {
+        this.xydtlist = res.data.resultData.rows;
+      }
+	},
+	// getZcfgList: async function() {
+    //   let params = { columnName: "政策法规" };
+    //   const res = await this.$http.post("/webApp/credit/searchArticle", params);
+    //   if (res.data.resultCode == "0000") {
+    //     this.zcfgList = res.data.resultData.rows;
+    //   }
+	// },
+	// qxjcList: async function() {
+    //   let params = { columnName: "县区信用监测" };
+    //   const res = await this.$http.post("/webApp/credit/searchArticle", params);
+    //   if (res.data.resultCode == "0000") {
+    //     this.qxjcList = res.data.resultData.rows;
+    //   }
+    // },
     onLoad() {
-      console.log(123);
+		console.log(arguments)
+      setTimeout(() => {
+        this.list.push({
+          title: "标题一",
+          content: "标题内容一"
+        });
+        this.loading = false;
+      }, 2000);
+	},
+	onLoad1() {
+		console.log(arguments)
+      setTimeout(() => {
+        this.list.push({
+          title: "标题一",
+          content: "标题内容一"
+        });
+        this.loading = false;
+      }, 2000);
+	},
+	onLoad2() {
+		console.log(arguments)
       setTimeout(() => {
         this.list.push({
           title: "标题一",
@@ -138,14 +178,14 @@ export default {
       vertical-align: middle;
       text-align: center;
       background-color: #fff;
-      img{
-      	height: 28px;
-      	width: 26px;
+      img {
+        height: 28px;
+        width: 26px;
       }
-      p{
-      	font-size: 14px;
-      	text-align:center;
-      	margin:0 auto;
+      p {
+        font-size: 14px;
+        text-align: center;
+        margin: 0 auto;
       }
     }
   }
@@ -164,12 +204,12 @@ export default {
   }
   .tab {
     .van-tab__pane {
-	  padding: 10px;
-	  .van-cell__title{
-		  .news-title{
-			  max-width: 230px;	
-		  }
-	  }
+      padding: 10px;
+      .van-cell__title {
+        .news-title {
+          max-width: 230px;
+        }
+      }
     }
   }
 }
