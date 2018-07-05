@@ -3,8 +3,8 @@
 		<!-- 轮播 -->
 		<div class="swipe-wrap">
 			<van-swipe :autoplay="3000">
-				<van-swipe-item v-for="(image, index) in images" :key="index">
-					<img v-lazy="image" />
+				<van-swipe-item v-for="(item, index) in swipeArry" :key="index">
+					<router-link class="img-wrap" :to="{path:'articleDetail',query: { id: item.id }}"><img v-lazy="item.thumbnailBigLink" /></router-link>
 				</van-swipe-item>
 			</van-swipe>
 		</div>
@@ -27,16 +27,21 @@
 
 		<!-- 守信和失信入口 -->
 		<div class="credit-nav">
-			<div class="credit-nav-item"><img src="../img/sx3x.png" alt="" srcset=""></div>
-			<div class="credit-nav-item"><img src="../img/sx13x.png" alt="" srcset=""></div>
+			<div class="credit-nav-item">
+				<router-link :to="{path:'rewards',query: { active: 0 }}"><img src="../img/sx3x.png" alt="" srcset=""></router-link>
+
+			</div>
+			<div class="credit-nav-item">
+				<router-link :to="{path:'rewards',query: { active: 1 }}"><img src="../img/sx13x.png" alt="" srcset=""></router-link>
+			</div>
 		</div>
 		<!-- tab页签 -->
 		<div class="tab">
-			<van-tabs v-model="active">
+			<van-tabs v-model="active" @click="onTabClick">
 				<van-tab title="信用动态">
 					<div>
-						<van-list v-model="loading" @load="onLoad" :offset='2' :immediate-check="false">
-							<van-cell v-for="(item,index) in xydtlist" :key="index" :border="false" is-link>
+						<van-list v-model="loading" @load="onLoad" :offset='10' :immediate-check="false" :finished="finished">
+							<van-cell v-for="(item,index) in xydtlist" :key="index" :border="false" is-link :to="{ path: 'articleDetail', query: { id: item.id }}">
 								<template slot="title">
 									<div class="van-ellipsis fl news-title">{{item.title}}</div>
 									<div class="fr">{{item.publishTime}}</div>
@@ -46,28 +51,28 @@
 					</div>
 				</van-tab>
 				<van-tab title="政策法规">
-					<!-- <div>
-						<van-list v-model="loading" @load="onLoad1" :offset='2' :immediate-check="false">
-							<van-cell v-for="(item,index) in list1" :key="index" :border="false" is-link>
+					<div>
+						<van-list v-model="loading1" @load="onLoad1" :offset='10' :immediate-check="false" :finished="finished1">
+							<van-cell v-for="(item,index) in zcfgList" :key="index" :border="false" is-link :to="{ path: 'articleDetail', query: { id: item.id }}">
 								<template slot="title">
-									<div class="van-ellipsis fl news-title">标题一标题一标题一标题一标题一标题一</div>
-									<div class="fr">2018/02/01</div>
+									<div class="van-ellipsis fl news-title">{{item.title}}</div>
+									<div class="fr">{{item.publishTime}}</div>
 								</template>
 							</van-cell>
 						</van-list>
-					</div> -->
+					</div>
 				</van-tab>
 				<van-tab title="县区信用监测">
-					<!-- <div>
-						<van-list v-model="loading" @load="onLoad2" :offset='2' :immediate-check="false">
-							<van-cell v-for="(item,index) in list2" :key="index" :border="false" is-link>
+					<div>
+						<van-list v-model="loading2" @load="onLoad2" :offset='10' :immediate-check="false" :finished="finished2">
+							<van-cell v-for="(item,index) in qxjcList" :key="index" :border="false" is-link :to="{ path: 'articleDetail', query: { id: item.id }}">
 								<template slot="title">
-									<div class="van-ellipsis fl news-title">标题一标题一标题一标题一标题一标题一</div>
-									<div class="fr">2018/02/01</div>
+									<div class="van-ellipsis fl news-title">{{item.title}}</div>
+									<div class="fr">{{item.publishTime}}</div>
 								</template>
 							</van-cell>
 						</van-list>
-					</div> -->
+					</div>
 				</van-tab>
 			</van-tabs>
 		</div>
@@ -83,16 +88,26 @@ export default {
     return {
       active: 0,
       images: [newPng, newPng],
+      swipeArry: [],
+      pageNo_xydt: 1,
+      pageNo_zcfg: 1,
+      pageNo_qxjc: 1,
       loading: false,
-	  xydtlist: [],
-	  zcfgList:[],
-	  qxjcList:[]
+      loading1: false,
+      loading2: false,
+      finished: false,
+      finished1: false,
+      finished2: false,
+      xydtlist: [],
+      zcfgList: [],
+      qxjcList: []
     };
   },
   mounted() {
-	this.getXytdList();
-	//this.getZcfgList();
-	//this.qxjcList();
+    this.getswipe();
+    this.getXytdList();
+    this.getZcfgList();
+    this.getqxjcList();
   },
   filters: {
     moment: function(date) {
@@ -100,56 +115,75 @@ export default {
     }
   },
   methods: {
+    getswipe: async function() {
+      const res = await this.$http.post("/webApp/credit/sowingMap");
+      if (res.data.resultCode == "0000") {
+        this.swipeArry = res.data.resultData;
+        this;
+      }
+    },
     getXytdList: async function() {
-      let params = { columnName: "信用动态" };
+      let params = {
+        columnName: "信用动态",
+        pageNo: this.pageNo_xydt,
+        pageSize: 10
+      };
       const res = await this.$http.post("/webApp/credit/searchArticle", params);
       if (res.data.resultCode == "0000") {
-        this.xydtlist = res.data.resultData.rows;
+        this.xydtlist = this.xydtlist.concat(res.data.resultData.rows);
+        ++this.pageNo_xydt;
+        this.loading = false;
       }
-	},
-	// getZcfgList: async function() {
-    //   let params = { columnName: "政策法规" };
-    //   const res = await this.$http.post("/webApp/credit/searchArticle", params);
-    //   if (res.data.resultCode == "0000") {
-    //     this.zcfgList = res.data.resultData.rows;
-    //   }
-	// },
-	// qxjcList: async function() {
-    //   let params = { columnName: "县区信用监测" };
-    //   const res = await this.$http.post("/webApp/credit/searchArticle", params);
-    //   if (res.data.resultCode == "0000") {
-    //     this.qxjcList = res.data.resultData.rows;
-    //   }
-    // },
+    },
+    getZcfgList: async function() {
+      let params = {
+        columnName: "政策法规",
+        pageNo: this.pageNo_zcfg,
+        pageSize: 10
+      };
+      const res = await this.$http.post("/webApp/credit/searchArticle", params);
+      if (res.data.resultCode == "0000") {
+        this.zcfgList = this.zcfgList.concat(res.data.resultData.rows);
+        ++this.pageNo_zcfg;
+        this.loading1 = false;
+      }
+    },
+    getqxjcList: async function() {
+      let params = {
+        columnName: "政策法规",
+        pageNo: this.pageNo_qxjc,
+        pageSize: 10
+      };
+      const res = await this.$http.post("/webApp/credit/searchArticle", params);
+      if (res.data.resultCode == "0000") {
+        this.qxjcList = this.qxjcList.concat(res.data.resultData.rows);
+        ++this.pageNo_qxjc;
+        this.loading2 = false;
+      }
+    },
     onLoad() {
-		console.log(arguments)
-      setTimeout(() => {
-        this.list.push({
-          title: "标题一",
-          content: "标题内容一"
-        });
-        this.loading = false;
-      }, 2000);
-	},
-	onLoad1() {
-		console.log(arguments)
-      setTimeout(() => {
-        this.list.push({
-          title: "标题一",
-          content: "标题内容一"
-        });
-        this.loading = false;
-      }, 2000);
-	},
-	onLoad2() {
-		console.log(arguments)
-      setTimeout(() => {
-        this.list.push({
-          title: "标题一",
-          content: "标题内容一"
-        });
-        this.loading = false;
-      }, 2000);
+      this.getXytdList();
+    },
+    onLoad1() {
+      this.getZcfgList();
+    },
+    onLoad2() {
+      this.getqxjcList();
+    },
+    onTabClick(index, title) {
+      if (index == 0) {
+        this.finished = false;
+        this.finished1 = true;
+        this.finished2 = true;
+      } else if (index == 1) {
+        this.finished = true;
+        this.finished1 = false;
+        this.finished2 = true;
+      } else if (index == 2) {
+        this.finished = true;
+        this.finished1 = true;
+        this.finished2 = false;
+      }
     }
   }
 };
@@ -159,8 +193,14 @@ export default {
 .home {
   .swipe-wrap {
     padding: 10px;
-    .van-swipe img {
-      width: 100%;
+    .van-swipe {
+      .img-wrap {
+        display: block;
+        img {
+          width: 100%;
+		  height: 149px;
+        }
+      }
     }
   }
   .gs-nav {

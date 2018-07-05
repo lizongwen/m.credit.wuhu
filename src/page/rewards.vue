@@ -2,7 +2,7 @@
 	<div class="dynamic">
 		<div class="search-bar-wrap">
 			<form action="/">
-				<van-search v-model="searchValue" placeholder="请输入商品名称" show-action @search="onSearch" @cancel="onCancel">
+				<van-search v-model="searchValue" placeholder="请输入商品名称" show-action @search="onSearch">
 					<div slot="action" @click="onSearch" class="search-btn">搜索</div>
 				</van-search>
 			</form>
@@ -12,10 +12,10 @@
 				<van-tab title="失信联合惩戒">
 					<div>
 						<van-list v-model="loading" @load="onLoad" :offset='2' :immediate-check="false">
-							<van-cell v-for="(item,index) in list" :key="index" :border="false" is-link>
+							<van-cell v-for="(item,index) in sxcjlist" :key="index" :border="false" is-link>
 								<template slot="title">
-									<div class="van-ellipsis fl news-title">标题一标题一标题一标题一标题一标题一</div>
-									<div class="fr">2018/02/01</div>
+									<div class="van-ellipsis fl news-title">{{item.title}}</div>
+									<div class="fr">{{item.publishTime}}</div>
 								</template>
 							</van-cell>
 						</van-list>
@@ -23,7 +23,16 @@
 				</van-tab>
 				
 				<van-tab title="守信正向激励">
-					<div>1</div>
+					<div>
+						<van-list v-model="loading" @load="onLoad" :offset='2' :immediate-check="false">
+							<van-cell v-for="(item,index) in sxjlList" :key="index" :border="false" is-link>
+								<template slot="title">
+									<div class="van-ellipsis fl news-title">{{item.title}}</div>
+									<div class="fr">{{item.publishTime}}</div>
+								</template>
+							</van-cell>
+						</van-list>
+					</div>
 				</van-tab>
 			</van-tabs>
 		</div>
@@ -37,88 +46,41 @@ export default {
       searchValue: "",
       loading: false,
       active: 0,
-      list: [
-        {
-          title: "标题一标题一标题一标题一标题一标题一标题一",
-          content: "标题内容一",
-          date: "2018/01/05"
-        },
-        {
-          title: "标题二",
-          content: "标题内容二",
-          date: "2018/01/05"
-        },
-        {
-          title: "标题三",
-          content: "标题内容三",
-          date: "2018/01/05"
-        },
-        {
-          title: "标题四",
-          content: "标题内容四",
-          date: "2018/01/05"
-        },
-        {
-          title: "标题五",
-          content: "标题内容五",
-          date: "2018/01/05"
-        },
-        {
-          title: "标题五",
-          content: "标题内容五",
-          date: "2018/01/05"
-        },
-        {
-          title: "标题五",
-          content: "标题内容五",
-          date: "2018/01/05"
-        },
-        {
-          title: "标题五",
-          content: "标题内容五",
-          date: "2018/01/05"
-        },
-        {
-          title: "标题五",
-          content: "标题内容五",
-          date: "2018/01/05"
-        },
-        {
-          title: "标题五",
-          content: "标题内容五",
-          date: "2018/01/05"
-        },
-        {
-          title: "标题五",
-          content: "标题内容五",
-          date: "2018/01/05"
-        },
-        {
-          title: "标题五",
-          content: "标题内容五",
-          date: "2018/01/05"
-        },
-        {
-          title: "标题五",
-          content: "标题内容五",
-          date: "2018/01/05"
-        },
-        {
-          title: "标题五",
-          content: "标题内容五",
-          date: "2018/01/05"
-        }
-      ]
+	  sxcjlist: [],
+	  sxjlList:[]
     };
+  },
+  mounted(){
+	  this.active=this.$route.query.active
+	  this.getSxcjList();
+	  this.getSxjlList();
+  },
+  beforeRouteUpdate(to, from, next) {
+	  console.log(to)
+	//    this.active = to.meta.index;
+	   next();
   },
   methods: {
     onSearch() {
 	  console.log("搜素");
 	  this.$router.push({ path: "article",query: { searchValue: this.searchValue } })
-    },
-    onCancel() {
-      console.log("取消");
-    },
+	},
+	getSxcjList: async function() {
+      let params = { columnName: "失信联合惩戒" };
+      const res = await this.$http.post("/webApp/credit/searchArticle", params);
+      if (res.data.resultCode == "0000") {
+		  
+        this.sxcjlist = res.data.resultData.rows;
+      }
+	},
+	getSxjlList: async function() {
+      let params = { columnName: "守信正向激励" };
+      const res = await this.$http.post("/webApp/credit/searchArticle", params);
+      if (res.data.resultCode == "0000") {
+		  
+        this.sxjlList = res.data.resultData.rows;
+      }
+	},
     onLoad() {
       console.log(123);
       setTimeout(() => {

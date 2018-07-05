@@ -3,9 +3,9 @@
 		<div class="banner">
 			<img src="../img/banner3x.png" alt="" srcset="">
 		</div>
-		<keep-alive>
+		<!-- <keep-alive> -->
 			<router-view class="content"/>
-		</keep-alive>
+		<!-- </keep-alive> -->
 		<van-tabbar v-model="active">
 			<van-tabbar-item to="./home">
 				<span>首页</span>
@@ -61,13 +61,18 @@ export default {
       }
     };
   },
-  mounted() {
-    this.active = this.$route.meta.index;
-  },
+//   mounted() {
+//    this.active = this.$route.meta.index;
+//   },
   methods: {
     change(active) {
       console.log(active);
     }
+  },
+  beforeRouteUpdate(to, from, next) {
+	//   console.log(to)
+	   this.active = to.meta.index;
+	   next();
   }
 };
 </script>

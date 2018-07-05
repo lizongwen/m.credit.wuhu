@@ -1,27 +1,44 @@
 <template>
 	<div class="articleDetail">
-		<div class="article-title">“惠政平台”助力芜湖信用示范城市建设</div>
+		<div class="article-title">{{article.title}}</div>
 		<div class="article-date">
-			<div class="van-ellipsis news-title fl">发布时间: 2017/03/08</div>
-			<div class="companycreditCode fl">来自: 芜湖新闻网-芜湖日报</div>
+			<div class="van-ellipsis news-title fl">发布时间: {{article.time}}</div>
+			<div class="companycreditCode fl">来自:  {{article.sources}}</div>
 		</div>
 		<div class="hr"></div>
-		<div class="article-content">
-			<p>记者近日从市发改委获悉，当前惠国征信正在着力打造“ 惠政平台”，该平台将应用于市场监管、公共服务、财政 补贴、税收征缴和政府采购等多个政府职能领域，助力芜 湖实现创建国家信用体系建设示范城市的目标。
-			</p>
-			<p>记者近日从市发改委获悉，当前惠国征信正在着力打造“ 惠政平台”，该平台将应用于市场监管、公共服务、财政 补贴、税收征缴和政府采购等多个政府职能领域，助力芜 湖实现创建国家信用体系建设示范城市的目标。
-			</p>
-			<p>记者近日从市发改委获悉，当前惠国征信正在着力打造“ 惠政平台”，该平台将应用于市场监管、公共服务、财政 补贴、税收征缴和政府采购等多个政府职能领域，助力芜 湖实现创建国家信用体系建设示范城市的目标。
-			</p>
-			<p>记者近日从市发改委获悉，当前惠国征信正在着力打造“ 惠政平台”，该平台将应用于市场监管、公共服务、财政 补贴、税收征缴和政府采购等多个政府职能领域，助力芜 湖实现创建国家信用体系建设示范城市的目标。
-			</p>
-		</div>
+		<div class="article-content" v-html="article.content"></div>
 	</div>
 </template>
 
 <script>
 	export default {
-
+		data(){
+			return{
+				id:"",
+				article:{
+					title:'',
+					content:'',
+					sources:'',
+					time:''
+				}
+			}
+		},
+		mounted(){
+			this.id=this.$route.query.id;
+			this.getArtDetail();
+		},
+		methods:{
+			getArtDetail:async function(){
+				let params = { id:this.id };
+				const res = await this.$http.post("/webApp/credit/articleDetail", params);
+				if (res.data.resultCode == "0000") {
+					this.article.title=res.data.resultData.title;
+					this.article.content=res.data.resultData.content;
+					this.article.sources=res.data.resultData.infoSources;
+					this.article.time=res.data.resultData.publishTime;
+				}
+			}
+		}
 	}
 </script>
 

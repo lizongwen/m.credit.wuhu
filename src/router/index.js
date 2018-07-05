@@ -50,35 +50,35 @@ export default new Router({
 				path: 'serviceDetail',
 				name: 'serviceDetail',//信用服务详情
 				meta:{
-					index:4
+					index:3
 				},
 				component: () => import('@/page/serviceDetail.vue'),
 			},{
 				path: 'article',
 				name: 'article',//全文检索文章
 				meta:{
-					index:5
+					index:1
 				},
 				component: () => import('@/page/article.vue'),
 			},{
 				path: 'articleDetail',
 				name: 'articleDetail',//全文检索文章详情
 				meta:{
-					index:6
+					index:1
 				},
 				component: () => import('@/page/articleDetail.vue'),
 			},{
 				path: 'publicityCompany',
 				name: 'publicityCompany',//信用公示企业
 				meta:{
-					index:7
+					index:2
 				},
 				component: () => import('@/page/publicityCompany.vue'),
 			},{
 				path: 'rewards',
 				name: 'rewards',//惩戒动态
 				meta:{
-					index:0
+					index:4
 				},
 				component: () => import('@/page/rewards.vue'),
 			},]

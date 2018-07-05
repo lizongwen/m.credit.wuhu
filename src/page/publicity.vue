@@ -12,7 +12,7 @@
 				<van-tab title="红名单">
 					<!--<div>-->
 					<!--<van-list v-model="loading" @load="onLoad" :offset='1' :immediate-check="false">-->
-					<van-cell v-for="(item,index) in redlist" :key="index" :border="false" is-link :to="{path:'publicityCompany',query:{mc:item.xzxdrmc,ztlx:item.ztlx,gslb:0}}">
+					<van-cell v-for="(item,index) in redlist" :key="index" :border="false" is-link :to="{path:'publicityCompany',query:{mc:item.xzxdrmc,ztlx:item.ztlx,gslb:'0'}}">
 						<template slot="title">
 							<div class="van-ellipsis news-title">{{item.xzxdrmc}}</div>
 							<div class="companycreditCode">统一社会信用代码:
@@ -32,7 +32,7 @@
 				</van-tab>
 				<van-tab title="黑名单">
 					<div>
-						<van-cell v-for="(item,index) in blacklist" :key="index" :border="false" is-link :to="{path:'publicityCompany',query:{mc:item.xzxdrmc,ztlx:item.ztlx,gslb:1}}">
+						<van-cell v-for="(item,index) in blacklist" :key="index" :border="false" is-link :to="{path:'publicityCompany',query:{mc:item.xzxdrmc,ztlx:item.ztlx,gslb:'1'}}">
 							<template slot="title">
 								<div class="van-ellipsis news-title">{{item.xzxdrmc}}</div>
 								<div class="companycreditCode">统一社会信用代码:
@@ -48,7 +48,7 @@
 				</van-tab>
 				<van-tab title="失信被执行人">
 					<div>
-						<van-cell v-for="(item,index) in loseCreditList" :key="index" :border="false" is-link :to="{path:'publicityCompany',query:{mc:item.sxbzxrmc,ztlx:item.ztlx,gslb:2}}">
+						<van-cell v-for="(item,index) in loseCreditList" :key="index" :border="false" is-link :to="{path:'publicityCompany',query:{mc:item.sxbzxrmc,ztlx:item.ztlx,gslb:'2'}}">
 							<template slot="title">
 								<div class="van-ellipsis news-title">{{item.sxbzxrmc}}</div>
 								<div class="companycreditCode">统一社会信用代码:
