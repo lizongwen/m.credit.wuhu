@@ -81,13 +81,11 @@
 
 <script>
 import moment from "moment";
-import newPng from "../img/new.png";
 
 export default {
   data() {
     return {
       active: 0,
-      images: [newPng, newPng],
       swipeArry: [],
       pageNo_xydt: 1,
       pageNo_zcfg: 1,
@@ -130,6 +128,9 @@ export default {
       };
       const res = await this.$http.post("/webApp/credit/searchArticle", params);
       if (res.data.resultCode == "0000") {
+        if (res.data.resultData.rows.length < 10) {
+          this.finished = true;
+        }
         this.xydtlist = this.xydtlist.concat(res.data.resultData.rows);
         ++this.pageNo_xydt;
         this.loading = false;
@@ -143,6 +144,9 @@ export default {
       };
       const res = await this.$http.post("/webApp/credit/searchArticle", params);
       if (res.data.resultCode == "0000") {
+        if (res.data.resultData.rows.length < 10) {
+          this.finished1 = true;
+        }
         this.zcfgList = this.zcfgList.concat(res.data.resultData.rows);
         ++this.pageNo_zcfg;
         this.loading1 = false;
@@ -150,12 +154,15 @@ export default {
     },
     getqxjcList: async function() {
       let params = {
-        columnName: "政策法规",
+        columnName: "县区信用监测",
         pageNo: this.pageNo_qxjc,
         pageSize: 10
       };
       const res = await this.$http.post("/webApp/credit/searchArticle", params);
       if (res.data.resultCode == "0000") {
+        if (res.data.resultData.rows.length < 10) {
+          this.finished2 = true;
+        }
         this.qxjcList = this.qxjcList.concat(res.data.resultData.rows);
         ++this.pageNo_qxjc;
         this.loading2 = false;
@@ -172,17 +179,29 @@ export default {
     },
     onTabClick(index, title) {
       if (index == 0) {
-        this.finished = false;
+        if (this.xydtlist.length % 10 != 0) {
+          this.finished = true;
+        } else {
+          this.finished = false;
+        }
         this.finished1 = true;
         this.finished2 = true;
       } else if (index == 1) {
+        if (this.zcfgList.length % 10 != 0) {
+          this.finished1 = true;
+        } else {
+          this.finished1 = false;
+        }
         this.finished = true;
-        this.finished1 = false;
         this.finished2 = true;
       } else if (index == 2) {
+        if (this.qxjcList.length % 10 != 0) {
+          this.finished2 = true;
+        } else {
+          this.finished2 = false;
+        }
         this.finished = true;
         this.finished1 = true;
-        this.finished2 = false;
       }
     }
   }
@@ -198,7 +217,7 @@ export default {
         display: block;
         img {
           width: 100%;
-		  height: 149px;
+          height: 149px;
         }
       }
     }

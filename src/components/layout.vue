@@ -4,7 +4,7 @@
 			<img src="../img/banner3x.png" alt="" srcset="">
 		</div>
 		<!-- <keep-alive> -->
-			<router-view class="content"/>
+		<router-view class="content" />
 		<!-- </keep-alive> -->
 		<van-tabbar v-model="active">
 			<van-tabbar-item to="./home">
@@ -61,18 +61,14 @@ export default {
       }
     };
   },
-//   mounted() {
-//    this.active = this.$route.meta.index;
-//   },
-  methods: {
-    change(active) {
-      console.log(active);
-    }
+  mounted() {
+    this.active = this.$route.meta.index;
   },
+  methods: {},
   beforeRouteUpdate(to, from, next) {
-	//   console.log(to)
-	   this.active = to.meta.index;
-	   next();
+    console.log(to);
+    this.active = to.meta.index;
+    next();
   }
 };
 </script>
@@ -96,7 +92,7 @@ export default {
   }
   .content {
     overflow: auto;
-	height: calc(100% - 70px);
+    height: calc(100% - 70px);
   }
 }
 </style>
