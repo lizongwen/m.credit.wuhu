@@ -13,41 +13,69 @@
 			<van-tabs v-model="active">
 				<van-tab title="信用动态">
 					<div class="sub-tab">
-						<van-tabs type="card">
+						<van-tabs type="card" v-model="subactive">
 							<van-tab title="企业基本信息" class="tab_subpage">
-								<van-cell>
-									<div class="van-ellipsis fl label">aaa</div>
-									<div class="fr">bbbbbbbbbbbb</div>
-								</van-cell>
+								<van-collapse v-model="activeName" accordion>
+									<van-collapse-item title="企业基本信息" class="accordion">
+										<div>
+											<div class="message" v-for="(item,index) in detailBase" :key="index">
+												<div class="message-left">{{item.tempTableNote}}</div>
+												<div class="message-right">{{item.dynamicValue}}</div>
+											</div>
+										</div>
+									</van-collapse-item>
+								</van-collapse>
 							</van-tab>
 							<van-tab title="行政许可信息" class="tab_subpage">
-								<van-cell>
-									<div class="van-ellipsis fl label">aaa</div>
-									<div class="fr">bbbbbbbbbbbb</div>
-								</van-cell>
+								<van-collapse v-model="activeName" accordion>
+									<van-collapse-item  v-for="(item,index) in detailXzxx" :key="index" class="accordion" :title="`行政许可信息${index+1}`" :name="`${index+1}`">
+										<div>
+											<div class="message" v-for="(value,key) in item" :key="key">
+												<div class="message-left">{{value.tempTableNote}}</div>
+												<div class="message-right">{{value.dynamicValue}}</div>
+											</div>
+										</div>
+									</van-collapse-item>
+								</van-collapse>
 							</van-tab>
 						</van-tabs>
 					</div>
 				</van-tab>
 				<van-tab title="良好信息">
-					<van-cell>
-						<div class="van-ellipsis fl label">aaa</div>
-						<div class="fr">bbbbbbbbbbbb</div>
-					</van-cell>
-					<van-cell>
-						<div class="van-ellipsis fl label">aaa</div>
-						<div class="fr">bbbbbbbbbbbb</div>
-					</van-cell>
+					<div class="sub-tab">
+						<van-tabs type="card" v-model="subactive">
+							<van-tab title="表彰奖励信息" class="tab_subpage">
+								<van-collapse v-model="activeName" accordion>
+									<van-collapse-item  v-for="(item,index) in detailBzjl" :key="index" class="accordion" :title="`行政许可信息${index+1}`" :name="`${index+1}`">
+										<div>
+											<div class="message" v-for="(value,key) in item" :key="key">
+												<div class="message-left">{{value.tempTableNote}}</div>
+												<div class="message-right">{{value.dynamicValue}}</div>
+											</div>
+										</div>
+									</van-collapse-item>
+								</van-collapse>
+							</van-tab>
+						</van-tabs>
+					</div>
 				</van-tab>
 				<van-tab title="不良信息">
-					<van-cell>
-						<div class="van-ellipsis fl label">aaa</div>
-						<div class="fr">bbbbbbbbbbbb</div>
-					</van-cell>
-					<van-cell>
-						<div class="van-ellipsis fl label">aaa</div>
-						<div class="fr">bbbbbbbbbbbb</div>
-					</van-cell>
+					<div class="sub-tab">
+						<van-tabs type="card" v-model="subactive">
+							<van-tab title="行政处罚信息" class="tab_subpage">
+								<van-collapse v-model="activeName" accordion>
+									<van-collapse-item  v-for="(item,index) in detailCFxx" :key="index" class="accordion" :title="`行政许可信息${index+1}`" :name="`${index+1}`">
+										<div>
+											<div class="message" v-for="(value,key) in item" :key="key">
+												<div class="message-left">{{value.tempTableNote}}</div>
+												<div class="message-right">{{value.dynamicValue}}</div>
+											</div>
+										</div>
+									</van-collapse-item>
+								</van-collapse>
+							</van-tab>
+						</van-tabs>
+					</div>
 				</van-tab>
 			</van-tabs>
 		</div>
@@ -59,20 +87,30 @@
 export default {
   data() {
     return {
+      activeName: "1",
       companyId: "",
+      companyName: "",
       active: 0,
+      subactive: "0",
       detail: {
         name: "",
         code: "",
         addr: ""
-      }
+      },
+      detailBase: [],
+      detailXzxx: [],
+      detailBzjl: [],
+      detailCFxx: []
     };
   },
   mounted() {
     this.companyId = this.$route.query.id;
+    this.companyName = this.$route.query.companyName;
     this.getCompanyInfo();
-    this.getXydtInfo(9);
-    this.getXydtInfo(14);
+	this.getDtInfo(9);// 企业基本信息 9
+    this.getDtInfo(14);// 行政许可信息 14
+    this.getDtInfo(6); // 表彰奖励信息 6
+    this.getDtInfo(21);// 行政处罚信息 21
   },
   methods: {
     getCompanyInfo: async function() {
@@ -87,20 +125,27 @@ export default {
         this.detail.addr = res.data.resultData.qydz;
       }
     },
-    // 	企业基本信息 9
-    // 行政许可信息 14
-    // 表彰奖励信息 6
-    // 行政处罚信息 21
-    getXydtInfo: async function(id) {
-      let params = { id: id, companyName: this.detail.name };
+
+    getDtInfo: async function(id) {
+      let params = { categoryId: id, companyName: this.companyName };
       const res = await this.$http.post(
         "/webApp/creditServer/getDynamicData",
         params
       );
-      if (res.data.resultCode == "0000") {
-        this.detail.name = res.data.resultData.qymc;
-        this.detail.code = res.data.resultData.tyshxydm;
-        this.detail.addr = res.data.resultData.qydz;
+      if (res.data.resultCode == "0000" &&res.data.resultData.length>0) {
+        if (id == 9) {
+          this.detailBase = res.data.resultData[0];
+        }
+        if (id == 14) {
+		  this.detailXzxx = res.data.resultData;
+		  console.log(this.detailXzxx)
+        }
+        if (id == 6) {
+          this.detailBzjl = res.data.resultData;
+        }
+        if (id == 21) {
+          this.detailCFxx = res.data.resultData;
+        }
       }
     }
   }
@@ -132,6 +177,28 @@ export default {
         background: #fff;
         .label {
           max-width: 160px;
+        }
+      }
+    }
+  }
+  .van-collapse {
+    .van-collapse-item__content {
+      .message {
+        font-size: 14px;
+        width: 100%;
+        border-bottom: 1px solid #ebebeb;
+        padding: 10px 0;
+        ::after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+        .message-left {
+          float: left;
+          width: 40%;
+        }
+        .message-right {
+          margin-left: 40%;
         }
       }
     }

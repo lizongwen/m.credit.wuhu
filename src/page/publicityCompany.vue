@@ -9,8 +9,8 @@
 				<p style="font-size: 12px; color: rgba(46,46,46,0.6);">共有{{detail.total}}条{{detail.label}}信息</p>
 			</div>
 			<img v-if="gslb==0" src="../img/red.png" />
-			<img v-if="gslb==0" src="../img/black.png" />
-			<img v-if="gslb==0" src="../img/black.png" />
+			<img v-if="gslb==1" src="../img/black.png" />
+			<img v-if="gslb==2" src="../img/black.png" />
 		</div>
 		<div class="content-title">
 			<p style="margin-left: 10px;">{{detail.label}}公示</p>

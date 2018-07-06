@@ -11,17 +11,24 @@
 
 		<!-- 公示快速入口模块 -->
 		<div class="gs-nav bg-grey">
+			
 			<div class="gs-nav-item">
-				<img src="../img/Slice1.png" alt="" srcset="">
-				<p>黑名单</p>
+				<router-link :to="{path:'publicity',query: { active: 0 }}">
+					<img src="../img/Slice2.png" alt="" srcset="">
+					<p>红名单</p>
+				</router-link>
 			</div>
 			<div class="gs-nav-item">
-				<img src="../img/Slice2.png" alt="" srcset="">
-				<p>红名单</p>
+				<router-link :to="{path:'publicity',query: { active: 1 }}">
+					<img src="../img/Slice1.png" alt="" srcset="">
+					<p>黑名单</p>
+				</router-link>
 			</div>
 			<div class="gs-nav-item">
-				<img src="../img/Slice3.png" alt="" srcset="">
-				<p>失信被执行人</p>
+				<router-link :to="{path:'publicity',query: { active: 2 }}">
+					<img src="../img/Slice3.png" alt="" srcset="">
+					<p>失信被执行人</p>
+				</router-link>
 			</div>
 		</div>
 
@@ -237,14 +244,18 @@ export default {
       vertical-align: middle;
       text-align: center;
       background-color: #fff;
-      img {
-        height: 28px;
-        width: 26px;
-      }
-      p {
-        font-size: 14px;
-        text-align: center;
-        margin: 0 auto;
+      a {
+        display: block;
+        color: #333;
+        img {
+          height: 28px;
+          width: 26px;
+        }
+        p {
+          font-size: 14px;
+          text-align: center;
+          margin: 0 auto;
+        }
       }
     }
   }

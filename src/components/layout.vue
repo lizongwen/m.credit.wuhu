@@ -6,7 +6,7 @@
 		<!-- <keep-alive> -->
 		<router-view class="content" />
 		<!-- </keep-alive> -->
-		<van-tabbar v-model="active">
+		<van-tabbar v-model="active" v-if="isShow">
 			<van-tabbar-item to="./home">
 				<span>首页</span>
 				<template slot="icon" slot-scope="props">
@@ -46,6 +46,7 @@ export default {
   name: "layout",
   data() {
     return {
+      isShow: true,
       active: 0,
       icon: {
         homeNormal: require("../img/home.png"),
@@ -65,9 +66,24 @@ export default {
     this.active = this.$route.meta.index;
   },
   methods: {},
+  beforeRouteEnter(to, from, next) {
+    if (to.path == "/article"||to.path == "/articleDetail") {
+      next(vm => {
+        vm.isShow = false;
+      });
+    }
+    next();
+  },
   beforeRouteUpdate(to, from, next) {
-    console.log(to);
     this.active = to.meta.index;
+    if (to.path == "/article") {
+      this.isShow = false;
+    } else {
+      this.isShow = true;
+	}
+	if(to.path == "/articleDetail" && from.path=="/article"){
+		 this.isShow = false;
+	}
     next();
   }
 };

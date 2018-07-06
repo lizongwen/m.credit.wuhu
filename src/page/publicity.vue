@@ -81,6 +81,7 @@ export default {
     };
   },
   mounted() {
+	  this.active=this.$route.query.active;
     this.getRedList();
     this.getBlackList();
     this.getLoseCreditList();

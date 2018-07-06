@@ -12,7 +12,7 @@
 				<img src="../img/xyfw_empty.png" alt="" srcset="">
 			</div>
 			<van-list v-model="loading" @load="onLoad" :offset='1' :immediate-check="false" v-else>
-				<van-cell v-for="(item,index) in list" :key="index" class="list-item" :to="{ path: 'serviceDetail', query: { id: item.id }}">
+				<van-cell v-for="(item,index) in list" :key="index" class="list-item" :to="{ path: 'serviceDetail', query: { id: item.id,companyName:item.qymc }}">
 					<template slot="title">
 						<div class="van-ellipsis news-title">{{item.qymc}}</div>
 						<div class="companycreditCode">统一社会信用代码:
@@ -49,7 +49,7 @@ export default {
         params
       );
       if (res.data.resultCode == "0000") {
-        this.list = this.list.concat(res.data.resultData.rows);9
+        this.list = this.list.concat(res.data.resultData.rows);
         ++this.pageNo;
         this.loading = false;
         this.isEmpty = false;
