@@ -2,7 +2,7 @@
 	<div class="dynamic">
 		<div class="search-bar-wrap">
 			<form action="/">
-				<van-search v-model="searchValue" placeholder="请输入商品名称" show-action @search="onSearch">
+				<van-search v-model="searchValue" placeholder="请输入关键字" show-action @search="onSearch">
 					<div slot="action" @click="onSearch" class="search-btn">搜索</div>
 				</van-search>
 			</form>

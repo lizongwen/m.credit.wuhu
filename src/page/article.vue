@@ -8,7 +8,7 @@
 				<van-cell v-for="(item,index) in list" :key="index" :to="{ path: 'articleDetail', query: { id: item.id }}">
 					<template slot="title">
 						<div class="van-ellipsis news-title fl" v-html="item.title"></div>
-						<div class="companycreditCode fr">{{item.publishTime}}</div>
+						<div class="companycreditCode fr">{{item.cPublishTime}}</div>
 					</template>
 				</van-cell>
 			</van-list>
@@ -36,7 +36,7 @@ export default {
       let params = {
 		searchText: this.searchValue,
 		pageNo:this.pageNo,
-		pageSize:10
+		pageSize:20
       };
       const res = await this.$http.post("/webApp/credit/searchResult", params);
       if (res.data.resultCode == "0000") {
