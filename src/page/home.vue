@@ -210,7 +210,7 @@ export default {
         this.finished = true;
         this.finished1 = true;
       }
-    }
+	}
   }
 };
 </script>

@@ -1,11 +1,17 @@
 <template>
 	<div class="dynamic">
+		<van-actionsheet v-model="issheetShow">
+			<van-picker :columns="columns" show-toolbar @cancel="onCancel" @confirm="onConfirm" />
+		</van-actionsheet>
 		<div class="search-bar-wrap">
-			<form action="/">
-				<van-search v-model="searchValue" :placeholder="placeholder" show-action @search="onSearch">
-					<div slot="action" @click="onSearch" class="search-btn">搜索</div>
-				</van-search>
-			</form>
+			<div class="search-top">
+				<div class="search-type" @click="showPicker">{{type}}</div>
+				<div class="search-input-wrap">
+					<van-search v-model="searchValue" :placeholder="placeholder" show-action @search="onSearch" >
+						<div slot="action" @click="onSearch" class="search-btn">搜索</div> -->
+					</van-search>
+				</div>
+			</div>
 		</div>
 		<div class="tab">
 			<van-tabs v-model="active">
@@ -71,8 +77,12 @@
 export default {
   data() {
     return {
+      issheetShow: false,
+      columns: ["自然人", "法人"],
+      type: "自然人",
       placeholder: "请输入姓名或身份证号",
       searchValue: "",
+      searchType: 0,
       loading: false,
       active: 0,
       redlist: [],
@@ -81,7 +91,7 @@ export default {
     };
   },
   mounted() {
-	  this.active=this.$route.query.active;
+    this.active = this.$route.query.active;
     this.getRedList();
     this.getBlackList();
     this.getLoseCreditList();
@@ -114,6 +124,7 @@ export default {
       }
     },
     onSearch() {
+      console.log("搜索类型:", this.searchType);
       switch (this.active) {
         case 0:
           this.redlist = [];
@@ -128,10 +139,20 @@ export default {
           this.getLoseCreditList();
           break;
       }
-      //console.log("搜素");
     },
     onLoad() {
       console.log(123);
+    },
+    showPicker() {
+      this.issheetShow = !this.issheetShow;
+    },
+    onConfirm(value, index) {
+      this.type = value;
+      this.searchType = index;
+      this.issheetShow = false;
+    },
+    onCancel() {
+      this.issheetShow = false;
     }
   }
 };
@@ -167,6 +188,19 @@ export default {
         }
       }
     }
+  }
+  .search-top{
+	  display: flex;
+	  align-items: center;
+	  .search-type{
+		 line-height: 46px;
+		  padding-left:8px;
+		  font-size: 14px;
+		  background-color: rgb(242, 242, 242);
+	  }
+	  .search-input-wrap{
+		  flex:1
+	  }
   }
 }
 </style>
