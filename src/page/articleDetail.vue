@@ -3,14 +3,14 @@
 		<div class="articleDetail" v-for="(item,index) in articleArr" :key="index">
 			<div class="article-title">{{item.title}}</div>
 			<div class="article-date">
-				<div class="van-ellipsis news-title fl">发布时间: {{item.time}}</div>
-				<div class="companycreditCode fl">来自: {{item.sources}}</div>
+				<div class="van-ellipsis news-title fl">发布时间: {{item.publishTime}}</div>
+				<div class="companycreditCode fl">来自: {{item.infoSources}}</div>
 			</div>
 			<div class="hr"></div>
 			<div class="article-content" v-html="item.content">
 
 			</div>
-			<a class="article-attach" download href="item.resourcePath" v-if="item.resourcePath">附件：{{item.resourceName}}</a>
+			<a class="article-attach" download :href="item.resourcePath" v-if="item.resourcePath">附件：{{item.resourceName}}</a>
 		</div>
 	</div>
 
@@ -21,13 +21,7 @@ export default {
   data() {
     return {
       id: "",
-      articleArr: [],
-      article: {
-        title: "",
-        content: "",
-        sources: "",
-        time: ""
-      }
+      articleArr: []
     };
   },
   mounted() {
