@@ -4,14 +4,14 @@
 			<div class="company-title-left">
 				<p style="color:rgba(0,0,0,0.8)">{{detail.name}}</p>
 				<p style="font-size: 12px; color: rgba(46,46,46,0.6);">统一社会信用代码：
-					<span>{{detail.tyshxydm}}</span>
+					<span>{{detail.code}}</span>
 				</p>
 				<p style="font-size: 12px; color: rgba(46,46,46,0.6);">{{detail.addr}}</p>
 			</div>
 		</div>
 		<div class="tab">
 			<van-tabs v-model="active">
-				<van-tab title="信用动态">
+				<van-tab title="基本信息">
 					<div class="sub-tab">
 						<van-tabs type="card" v-model="subactive">
 							<van-tab title="企业基本信息" class="tab_subpage">
@@ -28,7 +28,7 @@
 							</van-tab>
 							<van-tab title="行政许可信息" class="tab_subpage">
 								<van-collapse v-model="activeName" accordion>
-									<van-collapse-item  v-for="(item,index) in detailXzxx" :key="index" class="accordion" :title="`行政许可信息${index+1}`" :name="`${index+1}`">
+									<van-collapse-item v-for="(item,index) in detailXzxx" :key="index" class="accordion" :title="`行政许可信息${index+1}`" :name="`${index+1}`">
 										<div>
 											<div class="message" v-for="(value,key) in item" :key="key">
 												<div class="message-left">{{value.tempTableNote}}</div>
@@ -43,10 +43,10 @@
 				</van-tab>
 				<van-tab title="良好信息">
 					<div class="sub-tab">
-						<van-tabs type="card" v-model="subactive">
+						<van-tabs type="card" v-model="subactive1">
 							<van-tab title="表彰奖励信息" class="tab_subpage">
 								<van-collapse v-model="activeName" accordion>
-									<van-collapse-item  v-for="(item,index) in detailBzjl" :key="index" class="accordion" :title="`行政许可信息${index+1}`" :name="`${index+1}`">
+									<van-collapse-item v-for="(item,index) in detailBzjl" :key="index" class="accordion" :title="`表彰奖励信息${index+1}`" :name="`${index+1}`">
 										<div>
 											<div class="message" v-for="(value,key) in item" :key="key">
 												<div class="message-left">{{value.tempTableNote}}</div>
@@ -61,10 +61,10 @@
 				</van-tab>
 				<van-tab title="不良信息">
 					<div class="sub-tab">
-						<van-tabs type="card" v-model="subactive">
+						<van-tabs type="card" v-model="subactive2">
 							<van-tab title="行政处罚信息" class="tab_subpage">
 								<van-collapse v-model="activeName" accordion>
-									<van-collapse-item  v-for="(item,index) in detailCFxx" :key="index" class="accordion" :title="`行政许可信息${index+1}`" :name="`${index+1}`">
+									<van-collapse-item v-for="(item,index) in detailCFxx" :key="index" class="accordion" :title="`行政处罚信息${index+1}`" :name="`${index+1}`">
 										<div>
 											<div class="message" v-for="(value,key) in item" :key="key">
 												<div class="message-left">{{value.tempTableNote}}</div>
@@ -91,7 +91,9 @@ export default {
       companyId: "",
       companyName: "",
       active: 0,
-      subactive: "0",
+      subactive: 0,
+      subactive1: 0,
+      subactive2: 0,
       detail: {
         name: "",
         code: "",
@@ -107,10 +109,10 @@ export default {
     this.companyId = this.$route.query.id;
     this.companyName = this.$route.query.companyName;
     this.getCompanyInfo();
-	this.getDtInfo(9);// 企业基本信息 9
-    this.getDtInfo(14);// 行政许可信息 14
+    this.getDtInfo(9); // 企业基本信息 9
+    this.getDtInfo(14); // 行政许可信息 14
     this.getDtInfo(6); // 表彰奖励信息 6
-    this.getDtInfo(21);// 行政处罚信息 21
+    this.getDtInfo(21); // 行政处罚信息 21
   },
   methods: {
     getCompanyInfo: async function() {
@@ -132,13 +134,13 @@ export default {
         "/webApp/creditServer/getDynamicData",
         params
       );
-      if (res.data.resultCode == "0000" &&res.data.resultData.length>0) {
+      if (res.data.resultCode == "0000" && res.data.resultData.length > 0) {
         if (id == 9) {
           this.detailBase = res.data.resultData[0];
         }
         if (id == 14) {
-		  this.detailXzxx = res.data.resultData;
-		  console.log(this.detailXzxx)
+          this.detailXzxx = res.data.resultData;
+          console.log(this.detailXzxx);
         }
         if (id == 6) {
           this.detailBzjl = res.data.resultData;
@@ -157,7 +159,7 @@ export default {
   font-size: 16px;
   background: #f6f6f6;
   .company-title {
-    height: 98px;
+    min-height: 98px;
     margin-top: 10px;
     background: #fff;
     .company-title-left {

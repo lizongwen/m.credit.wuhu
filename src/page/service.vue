@@ -10,8 +10,9 @@
 		<div class="search-content">
 			<div v-if="isEmpty" class="empty">
 				<img src="../img/xyfw_empty.png" alt="" srcset="">
+				<p>企业信用报告查询</p>
 			</div>
-			<van-list v-model="loading" @load="onLoad" :offset='1' :immediate-check="false" v-else>
+			<van-list v-model="loading" @load="onLoad" :offset='1' :immediate-check="false" v-else :finished="finished">
 				<van-cell v-for="(item,index) in list" :key="index" class="list-item" :to="{ path: 'serviceDetail', query: { id: item.id,companyName:item.qymc }}">
 					<template slot="title">
 						<div class="van-ellipsis news-title">{{item.qymc}}</div>
@@ -30,6 +31,7 @@ export default {
     return {
       isEmpty: true,
       loading: false,
+      finished: false,
       searchValue: "",
       pageNo: 1,
       columns: ["法人", "自然人"],
@@ -39,6 +41,11 @@ export default {
   },
   methods: {
     onSearch: async function() {
+      this.pageNo = 1;
+      this.list = [];
+      this.getList();
+    },
+    getList: async function() {
       let params = {
         searchText: this.searchValue,
         pageNo: this.pageNo,
@@ -49,6 +56,9 @@ export default {
         params
       );
       if (res.data.resultCode == "0000") {
+        if (res.data.resultData.rows.length < 10) {
+          this.finished = true;
+        }
         this.list = this.list.concat(res.data.resultData.rows);
         ++this.pageNo;
         this.loading = false;
@@ -56,7 +66,7 @@ export default {
       }
     },
     onLoad() {
-      this.onSearch();
+      this.getList();
     }
   }
 };
@@ -73,8 +83,14 @@ export default {
   .empty {
     height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    p {
+      font-family: PingFangSC-Regular;
+      font-size: 14px;
+      color: rgba(46, 46, 46, 0.25);
+    }
   }
 }
 </style>

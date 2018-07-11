@@ -4,7 +4,7 @@
 		<div class="information">共搜索到
 			<span>{{total}}</span>条结果</div>
 		<div>
-			<van-list v-model="loading" @load="onLoad" :offset='10' :immediate-check="false">
+			<van-list v-model="loading" @load="onLoad" :offset='10' :immediate-check="false" :finished="finished">
 				<van-cell v-for="(item,index) in list" :key="index" :to="{ path: 'articleDetail', query: { id: item.id }}">
 					<template slot="title">
 						<div class="van-ellipsis news-title fl" v-html="item.title"></div>
@@ -20,10 +20,11 @@
 export default {
   data() {
     return {
-	  searchValue: "",
-	  pageNo:1,
-	  total:"",
+      searchValue: "",
+      pageNo: 1,
+      total: "",
       loading: false,
+      finished: false,
       list: []
     };
   },
@@ -34,21 +35,23 @@ export default {
   methods: {
     fetchAllArt: async function() {
       let params = {
-		searchText: this.searchValue,
-		pageNo:this.pageNo,
-		pageSize:20
+        searchText: this.searchValue,
+        pageNo: this.pageNo,
+        pageSize: 20
       };
       const res = await this.$http.post("/webApp/credit/searchResult", params);
       if (res.data.resultCode == "0000") {
-		  console.log(res.data)
-		  this.total=res.data.resultData.total;
-		  this.list=this.list.concat(res.data.resultData.rows);
-		  ++this.pageNo;
-		  this.loading = false;
+        if (res.data.resultData.rows.length < 20) {
+          this.finished = true;
+        }
+        this.total = res.data.resultData.total;
+        this.list = this.list.concat(res.data.resultData.rows);
+        ++this.pageNo;
+        this.loading = false;
       }
     },
     onLoad() {
-	this.fetchAllArt();
+      this.fetchAllArt();
     }
   }
 };
@@ -62,6 +65,11 @@ export default {
     margin: 15px auto;
     font-size: 16px;
     color: #e23b41;
+  }
+  .van-cell__title {
+    .news-title {
+      max-width: 230px;
+    }
   }
   .information {
     padding: 0 0 10px 10px;

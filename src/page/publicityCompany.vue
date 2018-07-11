@@ -8,9 +8,17 @@
 				</p>
 				<p style="font-size: 12px; color: rgba(46,46,46,0.6);">共有{{detail.total}}条{{detail.label}}信息</p>
 			</div>
-			<img v-if="gslb==0" src="../img/red.png" />
-			<img v-if="gslb==1" src="../img/black.png" />
-			<img v-if="gslb==2" src="../img/black.png" />
+			<template v-if="gslb==0">
+				<div class="gs-label red">红名单</div>
+
+			</template>
+			<template v-if="gslb==1">
+				<div class="gs-label black">黑名单</div>
+
+			</template>
+			<template v-if="gslb==2">
+				<div class="gs-label bzxr">失信被执行人</div>
+			</template>
 		</div>
 		<div class="content-title">
 			<p style="margin-left: 10px;">{{detail.label}}公示</p>
@@ -202,10 +210,10 @@ export default {
         total: "",
         label: "",
         tyshxydm: ""
-	  },
-	  redList:[],
-	  blackList:[],
-	  discreditList:[]
+      },
+      redList: [],
+      blackList: [],
+      discreditList: []
     };
   },
   mounted() {
@@ -228,18 +236,18 @@ export default {
         break;
       case "1":
         this.detail.label = "黑名单";
-		this.getblackHeadInfo();
-		 this.getblackFootInfo();
+        this.getblackHeadInfo();
+        this.getblackFootInfo();
         break;
       case "2":
         this.detail.label = "失信被执行人";
-		this.getDiscreditHeadInfo();
-		this.getDiscreditFootInfo();
+        this.getDiscreditHeadInfo();
+        this.getDiscreditFootInfo();
         break;
     }
   },
   methods: {
-	  //红名单头部信息
+    //红名单头部信息
     getredHeadInfo: async function() {
       let params = { ztlx: this.ztlx, xzxdrmc: this.mc };
       const res = await this.$http.post(
@@ -251,8 +259,8 @@ export default {
         this.detail.tyshxydm = res.data.resultData.tyshxydm;
         this.detail.total = res.data.resultData.unTotalCount;
       }
-	},
-	//红名单脚部信息
+    },
+    //红名单脚部信息
     getredFootInfo: async function() {
       let params = { xzxdrmc: this.mc };
       const res = await this.$http.post(
@@ -260,10 +268,10 @@ export default {
         params
       );
       if (res.data.resultCode == "0000") {
-		this.redList=res.data.resultData;
+        this.redList = res.data.resultData;
       }
-	},
-	//黑名单头部信息
+    },
+    //黑名单头部信息
     getblackHeadInfo: async function() {
       let params = { ztlx: this.ztlx, xzxdrmc: this.mc };
       const res = await this.$http.post(
@@ -275,19 +283,19 @@ export default {
         this.detail.tyshxydm = res.data.resultData.tyshxydm;
         this.detail.total = res.data.resultData.unTotalCount;
       }
-	},
-	//黑名单脚部信息
-	getblackFootInfo: async function() {
+    },
+    //黑名单脚部信息
+    getblackFootInfo: async function() {
       let params = { xzxdrmc: this.mc };
       const res = await this.$http.post(
         "/webApp/credit/infoBlackFootResult",
         params
       );
       if (res.data.resultCode == "0000") {
-        this.blackList=res.data.resultData;
+        this.blackList = res.data.resultData;
       }
-	},
-	//失信被执行人头部信息
+    },
+    //失信被执行人头部信息
     getDiscreditHeadInfo: async function() {
       let params = { ztlx: this.ztlx, sxbzxrmc: this.mc };
       const res = await this.$http.post(
@@ -299,8 +307,8 @@ export default {
         this.detail.tyshxydm = res.data.resultData.tyshxydm;
         this.detail.total = res.data.resultData.unTotalCount;
       }
-	},
-	//失信被执行人脚部信息
+    },
+    //失信被执行人脚部信息
     getDiscreditFootInfo: async function() {
       let params = { sxbzxrmc: this.mc };
       const res = await this.$http.post(
@@ -308,7 +316,7 @@ export default {
         params
       );
       if (res.data.resultCode == "0000") {
-        this.discreditList=res.data.resultData;
+        this.discreditList = res.data.resultData;
       }
     }
   }
@@ -320,6 +328,7 @@ export default {
   font-size: 16px;
   background: #f6f6f6;
   .company-title {
+	position: relative;
     height: 98px;
     margin: 10px 0;
     background: #fff;
@@ -330,6 +339,25 @@ export default {
         margin-bottom: 6px;
       }
     }
+	.gs-label{
+		position: absolute;
+		right: 12px;
+		top: 12px;
+		padding:4px 13px;
+		font-size: 12px;
+		&.red{
+			background: #E23B41;
+			color:#fff;
+		}
+		&.black{
+			background: #000;
+			color:#fff;
+		}
+		&.bzxr{
+			border:1px solid #E23B41;
+			color:#E23B41
+		}
+	}
     img {
       float: right;
     }
@@ -337,6 +365,7 @@ export default {
   .content-title {
     margin: 15px 10px;
     border-left: 4px solid #e23b41;
+	
   }
   .van-collapse {
     .van-collapse-item__content {
@@ -346,11 +375,11 @@ export default {
         width: 100%;
         border-bottom: 1px solid #ebebeb;
         padding: 10px 0;
-		::after{
-			content:"";
-			display: table;
-			clear: both;
-		}
+        ::after {
+          content: "";
+          display: table;
+          clear: both;
+        }
         .message-left {
           float: left;
           width: 40%;
