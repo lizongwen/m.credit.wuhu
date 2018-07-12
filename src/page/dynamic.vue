@@ -173,14 +173,14 @@ export default {
 <style lang="scss" scoped>
 .dynamic {
   .search-btn {
-    padding: 0 5px;
+    padding: 0 0.25rem;
   }
   .tab {
     .van-tab__pane {
-      padding: 10px;
+      padding: 0.5rem;
       .van-cell__title {
         .news-title {
-          max-width: 230px;
+          max-width: 11rem;
         }
       }
     }

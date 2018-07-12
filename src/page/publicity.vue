@@ -1,7 +1,7 @@
 <template>
-	<div class="dynamic">
-		<van-actionsheet v-model="issheetShow">
-			<van-picker :columns="columns" show-toolbar @confirm="onConfirm" />
+	<div>
+		<van-actionsheet v-model="issheetShow" class="dialog">
+			<van-picker :columns="columns" show-toolbar @confirm="onConfirm" @cancel="onCancel" />
 		</van-actionsheet>
 		<div class="search-bar-wrap">
 			<div class="search-top">
@@ -80,10 +80,10 @@ export default {
     return {
       issheetShow: false,
       columns: ["自然人", "法人"],
-      type: "自然人",
+      type: "请选择",
       placeholder: "请输入姓名或身份证号",
       searchValue: "",
-      searchType: 0,
+      searchType: "",
       pageNo_red: 1,
       pageNo_black: 1,
       pageNo_bzxr: 1,
@@ -108,7 +108,7 @@ export default {
   methods: {
     getRedList: async function() {
       let params = {
-        ztlx: "",
+        ztlx: this.searchType,
         xzxdrmc: this.searchValue,
         pageNo: this.pageNo_red,
         pageSize: 10
@@ -125,7 +125,7 @@ export default {
     },
     getBlackList: async function() {
       let params = {
-        ztlx: "",
+        ztlx: this.searchType,
         xzxdrmc: this.searchValue,
         pageNo: this.pageNo_black,
         pageSize: 10
@@ -142,7 +142,7 @@ export default {
     },
     getLoseCreditList: async function() {
       let params = {
-        ztlx: "",
+        ztlx: this.searchType,
         sxbzxrmc: this.searchValue,
         pageNo: this.pageNo_bzxr,
         pageSize: 10
@@ -165,14 +165,17 @@ export default {
     onSearch() {
       switch (this.active) {
         case 0:
+          this.pageNo_red = 1;
           this.redlist = [];
           this.getRedList();
           break;
         case 1:
+          this.pageNo_black = 1;
           this.blacklist = [];
           this.getBlackList();
           break;
         case 2:
+          this.pageNo_bzxr = 1;
           this.loseCreditList = [];
           this.getLoseCreditList();
           break;
@@ -226,7 +229,9 @@ export default {
         this.searchType = 2;
         this.placeholder = "请输入企业名称或者统一社会信用代码";
       }
-
+      this.issheetShow = false;
+    },
+    onCancel() {
       this.issheetShow = false;
     }
   }
@@ -234,48 +239,51 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.dynamic {
-  .search-btn {
-    padding: 0 5px;
-  }
-  .tab {
-    .van-tab__pane {
-      background: #f6f6f6;
-      .van-cell {
-        height: 104px;
-        margin-bottom: 10px;
-        .van-cell__title {
-          .news-title {
-            max-width: 230px;
-            font-size: 14px;
-          }
-          .companycreditCode {
-            font-size: 12px;
-            margin-bottom: 10px;
-          }
-          .quantity {
-            text-align: center;
-            height: 24px;
-            width: 90px;
-            font-size: 12px;
-            border: 1px solid #e23b41;
-          }
-        }
-      }
-    }
-  }
+.search-bar-wrap {
   .search-top {
     display: flex;
     align-items: center;
     .search-type {
-      line-height: 46px;
-      padding-left: 8px;
-      font-size: 14px;
+      line-height: 2.3rem;
+      padding-left: 0.4rem;
+      font-size: 0.7rem;
       background-color: rgb(242, 242, 242);
     }
     .search-input-wrap {
       flex: 1;
+      .search-btn {
+        padding: 0 0.25rem;
+      }
     }
   }
+}
+.tab {
+  .van-tab__pane {
+    background: #f6f6f6;
+    .van-cell {
+      height: 5.2rem;
+      margin-bottom: 0.5rem;
+      .van-cell__title {
+        .news-title {
+          max-width: 11rem;
+          font-size: 0.7rem;
+        }
+        .companycreditCode {
+          font-size: 0.6rem;
+          margin-bottom: 0.5rem;
+        }
+        .quantity {
+          text-align: center;
+          height: 1.2rem;
+          width: 4.5rem;
+          font-size: 0.6rem;
+          border: 1px solid #e23b41;
+        }
+      }
+    }
+  }
+}
+.dialog {
+  font-size: 0.7rem;
 }
 </style>

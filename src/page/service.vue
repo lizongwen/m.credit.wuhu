@@ -75,11 +75,11 @@ export default {
 <style lang="scss" scoped>
 .search-bar-wrap {
   .search-btn {
-    padding: 0 5px;
+    padding: 0 0.25rem;
   }
 }
 .search-content {
-  height: calc(100% - 46px);
+  height: calc(100% - 2.3rem);
   .empty {
     height: 100%;
     display: flex;
@@ -88,7 +88,7 @@ export default {
     align-items: center;
     p {
       font-family: PingFangSC-Regular;
-      font-size: 14px;
+      font-size: 0.7rem;
       color: rgba(46, 46, 46, 0.25);
     }
   }

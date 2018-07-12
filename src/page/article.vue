@@ -59,22 +59,22 @@ export default {
 
 <style lang="scss" scoped>
 .article {
-  font-size: 14px;
-  .article-header {
-    width: 64px;
-    margin: 15px auto;
-    font-size: 16px;
-    color: #e23b41;
-  }
-  .van-cell__title {
-    .news-title {
-      max-width: 230px;
+     font-size: 0.7rem;
+     .article-header {
+         width: 3.2rem;
+         margin: 0.75rem auto;
+         font-size: 0.8rem;
+         color: #e23b41;
     }
-  }
-  .information {
-    padding: 0 0 10px 10px;
-    font-size: 12px;
-    color: rgba(46, 46, 46, 0.4);
-  }
+     .van-cell__title {
+         .news-title {
+             max-width: 11rem;
+        }
+    }
+     .information {
+         padding: 0 0 0.5rem 0.5rem;
+         font-size: 0.6rem;
+         color: rgba(46, 46, 46, 0.4);
+    }
 }
 </style>

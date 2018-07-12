@@ -4,101 +4,75 @@ html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquot
 	padding: 0;
 }
 html,body{
-	// font-size:16px;
-	height: 100%
+	height: 100% 
 }
 *,*::after,*::before{
-	box-sizing: border-box
+	box-sizing: border-box 
 }
-.clearfix:before,
+.clearfix:before, .clearfix:after {
+	content: " ";
+	display: table;
+}
 .clearfix:after {
-    content: " ";
-    display: table;
+	clear: both;
 }
-
-.clearfix:after {
-    clear: both;
-}
-
 .block {
-    display: block
+	display: block 
 }
-
 .inline-block {
-    display: inline-block;
+	display: inline-block;
 }
-
-.pull-left,
-.fl {
-    float: left !important;
+.pull-left, .fl {
+	float: left !important;
 }
-
-.pull-right,
-.fr {
-    float: right !important;
+.pull-right, .fr {
+	float: right !important;
 }
-
-.hide,
-.hidden {
-    display: none !important;
+.hide, .hidden {
+	display: none !important;
 }
-
 .show {
-    display: block !important;
+	display: block !important;
 }
-
-.align-center,
-.text-center {
-    text-align: center !important;
+.align-center, .text-center {
+	text-align: center !important;
 }
-
-.align-left,
-.text-left {
-    text-align: left !important;
+.align-left, .text-left {
+	text-align: left !important;
 }
-
-.align-right,
-.text-right {
-    text-align: right !important;
+.align-right, .text-right {
+	text-align: right !important;
 }
-
-.align-justify,
-.text-justify {
-    text-align: justify
+.align-justify, .text-justify {
+	text-align: justify 
 }
-
 .invisible {
-    visibility: hidden;
+	visibility: hidden;
 }
 .over-hiden {
-    overflow: hidden !important;
+	overflow: hidden !important;
 }
 .text-hide {
-    font: 0/0 a;
-    color: transparent;
-    text-shadow: none;
-    background-color: transparent;
-    border: 0;
+	font: 0/0 a;
+	color: transparent;
+	text-shadow: none;
+	background-color: transparent;
+	border: 0;
 }
-
 .affix {
-    position: fixed;
+	position: fixed;
 }
-
 .text-indent {
-    text-indent: 30px;
+	text-indent: 1.5rem;
 }
-
 .ellipsis {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
-
 .no-border-radius {
-    border-radius: 0 !important;
+	border-radius: 0 !important;
 }
-
 .no-border {
-    border: none !important;
+	border: none !important;
 }

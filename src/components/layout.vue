@@ -76,10 +76,10 @@ export default {
   color: #e23b41;
 }
 .layout {
-  height: calc(100% - 50px);
+  height: calc(100% - 2.5rem);
   overflow: auto;
   .banner {
-    // height: 70px;
+    // height: 3.5rem;
     img {
       width: 100%;
       vertical-align: top;
@@ -87,7 +87,7 @@ export default {
   }
   .content {
     overflow: auto;
-    height: calc(100% - 70px);
+    height: calc(100% - 3.5rem);
   }
 }
 </style>

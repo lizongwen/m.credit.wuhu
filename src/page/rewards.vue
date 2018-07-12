@@ -1,5 +1,5 @@
 <template>
-	<div class="dynamic">
+	<div>
 		<div class="search-bar-wrap">
 			<form action="/">
 				<van-search v-model="searchValue" placeholder="请输入关键字" show-action @search="onSearch">
@@ -127,17 +127,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.dynamic {
-  .search-btn {
-    padding: 0 5px;
-  }
-  .tab {
-    .van-tab__pane {
-      padding: 10px;
-      .van-cell__title {
-        .news-title {
-          max-width: 230px;
-        }
+.search-btn {
+  padding: 0 0.25rem;
+}
+.tab {
+  .van-tab__pane {
+    padding: 0.5rem;
+    .van-cell__title {
+      .news-title {
+        max-width: 11rem;
       }
     }
   }

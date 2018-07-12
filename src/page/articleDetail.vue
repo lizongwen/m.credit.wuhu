@@ -44,35 +44,35 @@ export default {
 <style lang="scss">
 .articleDetail {
   .article-title {
-    margin: 10px;
+    margin: 0.5rem;
   }
   .article-date {
     overflow: hidden;
-    padding: 0px 10px;
-    font-size: 12px;
+    padding: 0rem 0.5rem;
+    font-size: 0.6rem;
     color: rgba(46, 46, 46, 0.4);
     .companycreditCode {
-      margin: 0 0 15px 20px;
+      margin: 0 0 0.75rem 1rem;
     }
   }
   .hr {
-    border-bottom: 1px solid #ebebeb;
+    border-bottom: 0.05rem solid #ebebeb;
   }
   .article-content {
-    padding: 10px;
-    font-size: 14px;
+    padding: 0.5rem;
+    font-size: 0.7rem;
     color: rgba(0, 0, 0, 0.8);
     p {
-      line-height: 20px;
-      margin-bottom: 20px;
+      line-height: 1rem;
+      margin-bottom: 1rem;
     }
     img {
       max-width: 100%;
     }
   }
   .article-attach {
-    padding: 10px;
-    font-size: 12px;
+    padding: 0.5rem;
+    font-size: 0.6rem;
     color: #2ba7fd;
   }
 }

@@ -11,7 +11,7 @@
 
 		<!-- 公示快速入口模块 -->
 		<div class="gs-nav bg-grey">
-			
+
 			<div class="gs-nav-item">
 				<router-link :to="{path:'publicity',query: { active: 0 }}">
 					<img src="../img/Slice2.png" alt="" srcset="">
@@ -210,7 +210,7 @@ export default {
         this.finished = true;
         this.finished1 = true;
       }
-	}
+    }
   }
 };
 </script>
@@ -218,28 +218,28 @@ export default {
 <style lang="scss" scoped>
 .home {
   .swipe-wrap {
-    padding: 10px;
+    padding: 0.5rem;
     .van-swipe {
       .img-wrap {
         display: block;
         img {
           width: 100%;
-          height: 149px;
+          height: 7.45rem;
         }
       }
     }
   }
   .gs-nav {
     display: flex;
-    padding: 8px 0;
-    justify-content: space-evenly;
-    align-content: space-evenly;
+    padding: 0.4rem 0.5rem;
+    justify-content: space-between;
+    align-content: space-between;
     align-items: center;
     background-color: #f6f6f6;
     .gs-nav-item {
-      width: 30%;
-      height: 60px;
-      padding-top: 5px;
+      width: 5.6rem;
+      height: 3rem;
+      padding-top: 0.25rem;
       display: table-cell;
       vertical-align: middle;
       text-align: center;
@@ -248,11 +248,11 @@ export default {
         display: block;
         color: #333;
         img {
-          height: 28px;
-          width: 26px;
+          height: 1.4rem;
+          width: 1.3rem;
         }
         p {
-          font-size: 14px;
+          font-size: 0.7rem;
           text-align: center;
           margin: 0 auto;
         }
@@ -261,12 +261,12 @@ export default {
   }
   .credit-nav {
     display: flex;
-    padding: 8px;
-    justify-content: space-evenly;
-    align-content: space-evenly;
+    padding: 0.4rem;
+    justify-content: space-between;
+    align-content: space-between;
     align-items: center;
     .credit-nav-item {
-      height: 55px;
+      height: 2.75rem;
       img {
         height: 100%;
       }
@@ -274,10 +274,10 @@ export default {
   }
   .tab {
     .van-tab__pane {
-      padding: 10px;
+      padding: 0.5rem;
       .van-cell__title {
         .news-title {
-          max-width: 230px;
+          max-width: 11rem;
         }
       }
     }

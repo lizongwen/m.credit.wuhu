@@ -3,10 +3,10 @@
 		<div class="company-title">
 			<div class="company-title-left">
 				<p style="color:rgba(0,0,0,0.8)">{{detail.name}}</p>
-				<p style="font-size: 12px; color: rgba(46,46,46,0.6);">{{detail.desc}}：
+				<p style="font-size: 0.6rem; color: rgba(46,46,46,0.6);">{{detail.desc}}：
 					<span>{{detail.tyshxydm}}</span>
 				</p>
-				<p style="font-size: 12px; color: rgba(46,46,46,0.6);">共有{{detail.total}}条{{detail.label}}信息</p>
+				<p style="font-size: 0.6rem; color: rgba(46,46,46,0.6);">共有{{detail.total}}条{{detail.label}}信息</p>
 			</div>
 			<template v-if="gslb==0">
 				<div class="gs-label red">红名单</div>
@@ -21,7 +21,7 @@
 			</template>
 		</div>
 		<div class="content-title">
-			<p style="margin-left: 10px;">{{detail.label}}公示</p>
+			<p style="margin-left: 0.5rem;">{{detail.label}}公示</p>
 		</div>
 		<div>
 			<van-collapse v-model="activeName" accordion>
@@ -325,56 +325,55 @@ export default {
 
 <style lang="scss" scoped>
 .publicityCompany {
-  font-size: 16px;
+  font-size: 0.8rem;
   background: #f6f6f6;
   .company-title {
-	position: relative;
-    height: 98px;
-    margin: 10px 0;
+    position: relative;
+    height: 4.9rem;
+    margin: 0.5rem 0;
     background: #fff;
     .company-title-left {
       float: left;
-      padding: 15px 10px;
+      padding: 0.75rem 0.5rem;
       p {
-        margin-bottom: 6px;
+        margin-bottom: 0.3rem;
       }
     }
-	.gs-label{
-		position: absolute;
-		right: 12px;
-		top: 12px;
-		padding:4px 13px;
-		font-size: 12px;
-		&.red{
-			background: #E23B41;
-			color:#fff;
-		}
-		&.black{
-			background: #000;
-			color:#fff;
-		}
-		&.bzxr{
-			border:1px solid #E23B41;
-			color:#E23B41
-		}
-	}
+    .gs-label {
+      position: absolute;
+      right: 0.6rem;
+      top: 0.6rem;
+      padding: 0.2rem 0.65rem;
+      font-size: 0.6rem;
+      &.red {
+        background: #e23b41;
+        color: #fff;
+      }
+      &.black {
+        background: #000;
+        color: #fff;
+      }
+      &.bzxr {
+        border: 1px solid #e23b41;
+        color: #e23b41;
+      }
+    }
     img {
       float: right;
     }
   }
   .content-title {
-    margin: 15px 10px;
-    border-left: 4px solid #e23b41;
-	
+    margin: 0.75rem 0.5rem;
+    border-left: 0.2rem solid #e23b41;
   }
   .van-collapse {
     .van-collapse-item__content {
-      padding: 0px;
+      padding: 0rem;
       .message {
-        font-size: 14px;
+        font-size: 0.7rem;
         width: 100%;
-        border-bottom: 1px solid #ebebeb;
-        padding: 10px 0;
+        border-bottom: 0.05rem solid #ebebeb;
+        padding: 0.5rem 0;
         ::after {
           content: "";
           display: table;

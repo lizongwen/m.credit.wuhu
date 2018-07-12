@@ -3,10 +3,10 @@
 		<div class="company-title">
 			<div class="company-title-left">
 				<p style="color:rgba(0,0,0,0.8)">{{detail.name}}</p>
-				<p style="font-size: 12px; color: rgba(46,46,46,0.6);">统一社会信用代码：
+				<p style="font-size: 0.6rem; color: rgba(46,46,46,0.6);">统一社会信用代码：
 					<span>{{detail.code}}</span>
 				</p>
-				<p style="font-size: 12px; color: rgba(46,46,46,0.6);">{{detail.addr}}</p>
+				<p style="font-size: 0.6rem; color: rgba(46,46,46,0.6);">{{detail.addr}}</p>
 			</div>
 		</div>
 		<div class="tab">
@@ -156,29 +156,29 @@ export default {
 
 <style lang="scss">
 .serviceDetail {
-  font-size: 16px;
+  font-size: 0.8rem;
   background: #f6f6f6;
   .company-title {
-    min-height: 98px;
-    margin-top: 10px;
+    min-height: 4.9rem;
+    margin-top: 0.5rem;
     background: #fff;
     .company-title-left {
       float: left;
-      padding: 15px 10px;
+      padding: 0.75rem 0.5rem;
       p {
-        margin-bottom: 6px;
+        margin-bottom: 0.3rem;
       }
     }
   }
   .tab {
     .sub-tab {
       background: #fff;
-      padding-top: 15px;
+      padding-top: 0.75rem;
       .tab_subpage {
-        padding: 20px 0px;
+        padding: 1rem 0rem;
         background: #fff;
         .label {
-          max-width: 160px;
+          max-width: 8rem;
         }
       }
     }
@@ -186,10 +186,10 @@ export default {
   .van-collapse {
     .van-collapse-item__content {
       .message {
-        font-size: 14px;
+        font-size: 0.7rem;
         width: 100%;
-        border-bottom: 1px solid #ebebeb;
-        padding: 10px 0;
+        border-bottom: 0.05rem solid #ebebeb;
+        padding: 0.5rem 0;
         ::after {
           content: "";
           display: table;
