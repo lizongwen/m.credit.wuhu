@@ -5,7 +5,7 @@ Vue.use(Router)
 
 export default new Router({
 	mode: 'history',
-	// base:'/m/',
+	base:'/m/',
 	routes: [
 		{
 			path: '/',

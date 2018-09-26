@@ -204,6 +204,7 @@ export default {
       mc: "",
       activeName: "1",
       gslb: null,
+      sfz: "",
       detail: {
         name: "",
         desc: "",
@@ -220,6 +221,7 @@ export default {
     this.ztlx = this.$route.query.ztlx;
     this.mc = this.$route.query.mc;
     this.gslb = this.$route.query.gslb;
+    this.sfz = this.$route.query.sfz;
     switch (this.ztlx) {
       case "1":
         this.detail.desc = "身份证号码";
@@ -249,7 +251,12 @@ export default {
   methods: {
     //红名单头部信息
     getredHeadInfo: async function() {
-      let params = { ztlx: this.ztlx, xzxdrmc: this.mc };
+      if (this.ztlx == 1) {
+        var xzxdrmc = this.sfz;
+      } else {
+        var xzxdrmc = this.mc;
+      }
+      let params = { ztlx: this.ztlx, xzxdrmc: xzxdrmc };
       const res = await this.$http.post(
         "/webApp/credit/infoRedHeadResult",
         params
@@ -262,7 +269,12 @@ export default {
     },
     //红名单脚部信息
     getredFootInfo: async function() {
-      let params = { xzxdrmc: this.mc,ztlx:this.ztlx };
+      if (this.ztlx == 1) {
+        var xzxdrmc = this.sfz;
+      } else {
+        var xzxdrmc = this.mc;
+      }
+      let params = { xzxdrmc: xzxdrmc, ztlx: this.ztlx };
       const res = await this.$http.post(
         "/webApp/credit/infoRedFootResult",
         params
@@ -273,7 +285,12 @@ export default {
     },
     //黑名单头部信息
     getblackHeadInfo: async function() {
-      let params = { ztlx: this.ztlx, xzxdrmc: this.mc };
+      if (this.ztlx == 1) {
+        var xzxdrmc = this.sfz;
+      } else {
+        var xzxdrmc = this.mc;
+      }
+      let params = { ztlx: this.ztlx, xzxdrmc: xzxdrmc };
       const res = await this.$http.post(
         "/webApp/credit/infoBlackHeadResult",
         params
@@ -286,7 +303,12 @@ export default {
     },
     //黑名单脚部信息
     getblackFootInfo: async function() {
-      let params = { xzxdrmc: this.mc,ztlx:this.ztlx };
+      if (this.ztlx == 1) {
+        var xzxdrmc = this.sfz;
+      } else {
+        var xzxdrmc = this.mc;
+      }
+      let params = { xzxdrmc: xzxdrmc, ztlx: this.ztlx };
       const res = await this.$http.post(
         "/webApp/credit/infoBlackFootResult",
         params
@@ -297,7 +319,12 @@ export default {
     },
     //失信被执行人头部信息
     getDiscreditHeadInfo: async function() {
-      let params = { ztlx: this.ztlx, sxbzxrmc: this.mc };
+      if (this.ztlx == 1) {
+        var sxbzxrmc = this.sfz;
+      } else {
+        var sxbzxrmc = this.mc;
+      }
+      let params = { ztlx: this.ztlx, sxbzxrmc: sxbzxrmc };
       const res = await this.$http.post(
         "/webApp/credit/infoDiscreditHeadResult",
         params
@@ -310,7 +337,12 @@ export default {
     },
     //失信被执行人脚部信息
     getDiscreditFootInfo: async function() {
-      let params = { sxbzxrmc: this.mc,ztlx:this.ztlx };
+      if (this.ztlx == 1) {
+        var sxbzxrmc = this.sfz;
+      } else {
+        var sxbzxrmc = this.mc;
+      }
+      let params = { sxbzxrmc: sxbzxrmc, ztlx: this.ztlx };
       const res = await this.$http.post(
         "/webApp/credit/infoDiscreditFootResult",
         params

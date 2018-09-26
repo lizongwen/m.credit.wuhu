@@ -18,11 +18,18 @@
 				<van-tab title="红名单">
 					<div>
 						<van-list v-model="loading" @load="onLoad" :offset='10' :immediate-check="false" :finished="finished">
-							<van-cell v-for="(item,index) in redlist" :key="index" :border="false" is-link :to="{path:'publicityCompany',query:{mc:item.xzxdrmc,ztlx:item.ztlx,gslb:'0'}}">
+							<van-cell v-for="(item,index) in redlist" :key="index" :border="false" is-link :to="{path:'publicityCompany',query:{mc:item.xzxdrmc,ztlx:item.ztlx,gslb:'0',sfz:item.tyshxydm}}">
 								<template slot="title">
 									<div class="van-ellipsis news-title">{{item.xzxdrmc}}</div>
-									<div class="companycreditCode">统一社会信用代码:
-										<span>{{item.tyshxydm}}</span>
+									<div class="companycreditCode">
+										<template v-if='item.ztlx==2'>
+											统一社会信用代码:
+											<span>{{item.tyshxydm}}</span>
+										</template>
+										<template v-else>
+											身份证号码:
+											<span>{{item.tyshxydm | formatTyshxydm}}</span>
+										</template>
 									</div>
 									<div class="quantity">
 										守信记录
@@ -36,15 +43,23 @@
 				<van-tab title="黑名单">
 					<div>
 						<van-list v-model="loading1" @load="onLoad1" :offset='10' :immediate-check="false" :finished="finished1">
-							<van-cell v-for="(item,index) in blacklist" :key="index" :border="false" is-link :to="{path:'publicityCompany',query:{mc:item.xzxdrmc,ztlx:item.ztlx,gslb:'1'}}">
+							<van-cell v-for="(item,index) in blacklist" :key="index" :border="false" is-link :to="{path:'publicityCompany',query:{mc:item.xzxdrmc,ztlx:item.ztlx,gslb:'1',sfz:item.tyshxydm}}">
 								<template slot="title">
 									<div class="van-ellipsis news-title">{{item.xzxdrmc}}</div>
-									<div class="companycreditCode">统一社会信用代码:
-										<span>{{item.tyshxydm}}</span>
+									<div class="companycreditCode">
+
+										<template v-if='item.ztlx==2'>
+											统一社会信用代码:
+											<span>{{item.tyshxydm}}</span>
+										</template>
+										<template v-else>
+											身份证号码:
+											<span>{{item.tyshxydm | formatTyshxydm}}</span>
+										</template>
 									</div>
 									<div class="quantity">
 										黑名单记录
-										<span>{{item.unTotalCount}}</span>
+										<span>{{item.unTotalCount | formatTyshxydm}}</span>
 									</div>
 								</template>
 							</van-cell>
@@ -54,11 +69,18 @@
 				<van-tab title="失信被执行人">
 					<div>
 						<van-list v-model="loading2" @load="onLoad2" :offset='10' :immediate-check="false" :finished="finished2">
-							<van-cell v-for="(item,index) in loseCreditList" :key="index" :border="false" is-link :to="{path:'publicityCompany',query:{mc:item.sxbzxrmc,ztlx:item.ztlx,gslb:'2'}}">
+							<van-cell v-for="(item,index) in loseCreditList" :key="index" :border="false" is-link :to="{path:'publicityCompany',query:{mc:item.sxbzxrmc,ztlx:item.ztlx,gslb:'2',sfz:item.tyshxydm}}">
 								<template slot="title">
 									<div class="van-ellipsis news-title">{{item.sxbzxrmc}}</div>
-									<div class="companycreditCode">统一社会信用代码:
-										<span>{{item.tyshxydm}}</span>
+									<div class="companycreditCode">
+										<template v-if='item.ztlx==2'>
+											统一社会信用代码:
+											<span>{{item.tyshxydm}}</span>
+										</template>
+										<template v-else>
+											身份证号码:
+											<span>{{item.tyshxydm | formatTyshxydm}}</span>
+										</template>
 									</div>
 									<div class="quantity">
 										失信记录
@@ -104,6 +126,13 @@ export default {
     this.getRedList();
     this.getBlackList();
     this.getLoseCreditList();
+  },
+  filters: {
+    formatTyshxydm(val) {
+      return val.replace(/(\w)/g, function(a, b, c, d) {
+        return c > 5 && c < 14 ? "*" : a;
+      });
+    }
   },
   methods: {
     getRedList: async function() {
@@ -227,7 +256,7 @@ export default {
         this.placeholder = "请输入姓名或身份证号";
       } else {
         this.searchType = 2;
-        this.placeholder = "请输入企业名称或者统一社会信用代码";
+        this.placeholder = "请输入企业名称或统一社会信用代码";
       }
       this.issheetShow = false;
     },
