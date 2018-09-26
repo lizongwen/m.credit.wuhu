@@ -4,7 +4,8 @@
 		<div class="swipe-wrap">
 			<van-swipe :autoplay="3000">
 				<van-swipe-item v-for="(item, index) in swipeArry" :key="index">
-					<router-link class="img-wrap" :to="{path:'articleDetail',query: { id: item.id }}"><img v-lazy="item.thumbnailBigLink" /></router-link>
+					<router-link v-if="item.id!='wlx'" class="img-wrap" :to="{path:'articleDetail',query: { id: item.id }}"><img v-lazy="item.thumbnailBigLink" /></router-link>
+					<a v-else :href="item.staticPageLink" class="img-wrap"><img v-lazy="item.thumbnailBigLink" /></a>
 				</van-swipe-item>
 			</van-swipe>
 		</div>
@@ -88,7 +89,7 @@
 
 <script>
 import moment from "moment";
-
+import wlxImg from "../img/wlx.jpg";
 export default {
   data() {
     return {
@@ -123,8 +124,18 @@ export default {
     getswipe: async function() {
       const res = await this.$http.post("/webApp/credit/sowingMap");
       if (res.data.resultCode == "0000") {
+        res.data.resultData.unshift({
+          content: null,
+          id: "wlx",
+          infoSources: null,
+          publishTime: null,
+          resourceName: null,
+          resourcePath: null,
+          staticPageLink: "http://credit.wuhu.gov.cn/news/credit.html",
+          thumbnailBigLink:wlxImg,
+          title:"诚信建设万里行主体宣传活动"
+        });
         this.swipeArry = res.data.resultData;
-        this;
       }
     },
     getXytdList: async function() {
@@ -274,7 +285,6 @@ export default {
   }
   .tab {
     .van-tab__pane {
-      padding: 0.5rem;
       .van-cell__title {
         .news-title {
           max-width: 11rem;

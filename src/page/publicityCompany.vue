@@ -25,7 +25,7 @@
 		</div>
 		<div>
 			<van-collapse v-model="activeName" accordion>
-				<van-collapse-item v-if="gslb==0" v-for="(item,index) in redList" :title="`${item.zhgxsj==null?'':item.zhgxsj}  来源: ${item.fbbmjcSource}`" :name="`${index+1}`" class="accordion" :key="index">
+				<van-collapse-item v-if="gslb==0" v-for="(item,index) in redList" :title="`${item.zhgxsj==null?'':item.zhgxsj}  来源: ${item.fbbmjcSource==null?'':item.fbbmjcSource}`" :name="`${index+1}`" class="accordion" :key="index">
 					<div>
 						<div class="message">
 							<div class="message-left">主体类型</div>
@@ -79,7 +79,7 @@
 						</div>
 					</div>
 				</van-collapse-item>
-				<van-collapse-item v-if="gslb==1" v-for="(item,index) in blackList" :title="`${item.zhgxsj==null?'':item.zhgxsj}  来源: ${item.fbbmjcSource}`" :name="`${index+1}`" class="accordion" :key="index">
+				<van-collapse-item v-if="gslb==1" v-for="(item,index) in blackList" :title="`${item.zhgxsj==null?'':item.zhgxsj}  来源: ${item.fbbmjcSource==null?'':item.fbbmjcSource}`" :name="`${index+1}`" class="accordion" :key="index">
 					<div>
 						<div class="message">
 							<div class="message-left">行政相对人名称</div>
@@ -117,7 +117,7 @@
 						</div>
 					</div>
 				</van-collapse-item>
-				<van-collapse-item v-if="gslb==2" v-for="(item,index) in discreditList" :title="`${item.zhgxsj==null?'':item.zhgxsj}  来源: ${item.zxfySource}`" :name="`${index+1}`" class="accordion" :key="index">
+				<van-collapse-item v-if="gslb==2" v-for="(item,index) in discreditList" :title="`${item.zhgxsj==null?'':item.zhgxsj}  来源: ${item.zxfySource==null?'':item.zxfySource}`" :name="`${index+1}`" class="accordion" :key="index">
 					<div>
 						<div class="message">
 							<div class="message-left">主体类型</div>
@@ -262,7 +262,7 @@ export default {
     },
     //红名单脚部信息
     getredFootInfo: async function() {
-      let params = { xzxdrmc: this.mc };
+      let params = { xzxdrmc: this.mc,ztlx:this.ztlx };
       const res = await this.$http.post(
         "/webApp/credit/infoRedFootResult",
         params
@@ -286,7 +286,7 @@ export default {
     },
     //黑名单脚部信息
     getblackFootInfo: async function() {
-      let params = { xzxdrmc: this.mc };
+      let params = { xzxdrmc: this.mc,ztlx:this.ztlx };
       const res = await this.$http.post(
         "/webApp/credit/infoBlackFootResult",
         params
@@ -310,7 +310,7 @@ export default {
     },
     //失信被执行人脚部信息
     getDiscreditFootInfo: async function() {
-      let params = { sxbzxrmc: this.mc };
+      let params = { sxbzxrmc: this.mc,ztlx:this.ztlx };
       const res = await this.$http.post(
         "/webApp/credit/infoDiscreditFootResult",
         params

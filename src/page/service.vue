@@ -75,7 +75,7 @@ export default {
 <style lang="scss" scoped>
 .search-bar-wrap {
   .search-btn {
-    padding: 0 0.25rem;
+    padding: 0 0.5rem;
   }
 }
 .search-content {

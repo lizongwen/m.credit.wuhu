@@ -15,8 +15,8 @@
 					<div class="sub-tab">
 						<van-tabs type="card" v-model="subactive">
 							<van-tab title="企业基本信息" class="tab_subpage">
-								<van-collapse v-model="activeName" accordion>
-									<van-collapse-item title="企业基本信息" class="accordion">
+								<van-collapse v-model="activeName">
+									<van-collapse-item title="企业基本信息" name="1">
 										<div>
 											<div class="message" v-for="(item,index) in detailBase" :key="index">
 												<div class="message-left">{{item.tempTableNote}}</div>
@@ -27,8 +27,8 @@
 								</van-collapse>
 							</van-tab>
 							<van-tab title="行政许可信息" class="tab_subpage">
-								<van-collapse v-model="activeName" accordion>
-									<van-collapse-item v-for="(item,index) in detailXzxx" :key="index" class="accordion" :title="`行政许可信息${index+1}`" :name="`${index+1}`">
+								<van-collapse v-model="activeName">
+									<van-collapse-item v-for="(item,index) in detailXzxx" :key="index" :title="`行政许可信息${index+1}`" :name="`${index+1}`">
 										<div>
 											<div class="message" v-for="(value,key) in item" :key="key">
 												<div class="message-left">{{value.tempTableNote}}</div>
@@ -45,8 +45,8 @@
 					<div class="sub-tab">
 						<van-tabs type="card" v-model="subactive1">
 							<van-tab title="表彰奖励信息" class="tab_subpage">
-								<van-collapse v-model="activeName" accordion>
-									<van-collapse-item v-for="(item,index) in detailBzjl" :key="index" class="accordion" :title="`表彰奖励信息${index+1}`" :name="`${index+1}`">
+								<van-collapse v-model="activeName">
+									<van-collapse-item v-for="(item,index) in detailBzjl" :key="index" :title="`表彰奖励信息${index+1}`" :name="`${index+1}`">
 										<div>
 											<div class="message" v-for="(value,key) in item" :key="key">
 												<div class="message-left">{{value.tempTableNote}}</div>
@@ -63,8 +63,8 @@
 					<div class="sub-tab">
 						<van-tabs type="card" v-model="subactive2">
 							<van-tab title="行政处罚信息" class="tab_subpage">
-								<van-collapse v-model="activeName" accordion>
-									<van-collapse-item v-for="(item,index) in detailCFxx" :key="index" class="accordion" :title="`行政处罚信息${index+1}`" :name="`${index+1}`">
+								<van-collapse v-model="activeName">
+									<van-collapse-item v-for="(item,index) in detailCFxx" :key="index" :title="`行政处罚信息${index+1}`" :name="`${index+1}`">
 										<div>
 											<div class="message" v-for="(value,key) in item" :key="key">
 												<div class="message-left">{{value.tempTableNote}}</div>
@@ -87,7 +87,7 @@
 export default {
   data() {
     return {
-      activeName: "1",
+      activeName: ['1'],
       companyId: "",
       companyName: "",
       active: 0,
@@ -140,7 +140,6 @@ export default {
         }
         if (id == 14) {
           this.detailXzxx = res.data.resultData;
-          console.log(this.detailXzxx);
         }
         if (id == 6) {
           this.detailBzjl = res.data.resultData;

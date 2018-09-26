@@ -252,7 +252,7 @@ export default {
     .search-input-wrap {
       flex: 1;
       .search-btn {
-        padding: 0 0.25rem;
+        padding: 0 0.5rem;
       }
     }
   }

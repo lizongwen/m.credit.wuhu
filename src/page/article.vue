@@ -61,10 +61,10 @@ export default {
 .article {
      font-size: 0.7rem;
      .article-header {
-         width: 3.2rem;
          margin: 0.75rem auto;
          font-size: 0.8rem;
          color: #e23b41;
+		 text-align: center;
     }
      .van-cell__title {
          .news-title {

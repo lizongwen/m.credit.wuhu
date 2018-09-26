@@ -10,7 +10,7 @@
 			<div class="article-content" v-html="item.content">
 
 			</div>
-			<a class="article-attach" download :href="item.resourcePath" v-if="item.resourcePath">附件：{{item.resourceName}}</a>
+			<a class="article-attach" download :href="`/webApp/credit/download?fileId=${item.id}`" v-if="item.resourcePath">附件：{{item.resourceName}}</a>
 		</div>
 	</div>
 
