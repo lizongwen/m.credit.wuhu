@@ -159,7 +159,7 @@ export default {
         pageNo: this.pageNo_black,
         pageSize: 10
       };
-      const res = await this.$http.post("/webApp/credit/getBlackLists", params);
+	  const res = await this.$http.post("/webApp/credit/getBlackLists", params);
       if (res.data.resultCode == "0000") {
         if (res.data.resultData.rows.length < 10) {
           this.finished1 = true;
